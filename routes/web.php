@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleButtonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::post('/articleButton/store', 'ArticleButtonController@store');
+Route::get('articleButton/index', 'ArticleButtonController@index');
+
+Route::get('articleLevel/index', 'ArticleLevelController@index');
+
+Route::post('/article/store', 'ArticleController@store');

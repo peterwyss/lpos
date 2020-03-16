@@ -99,6 +99,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        /* neu */
+        'journal' => [ 
+            'driver' => 'single',
+            'path' => storage_path('logs/journal.log'),
+        ],
     ],
 
 ];
