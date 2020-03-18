@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-
-class ArticleController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articleList = Article::all();
-        Log::debug($articleList);
-        Log::channel('journal')->debug($articleList);
-
-        return response()->json(["articleList" => $articleList]);
-        
+        //
     }
 
     /**
@@ -42,22 +36,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $article = new Article();
-        $article->name = request('name');
-        $article->plu = request('plu');
-        $article->category = request('category');
-        $article->price = request('price');
-        $article->purchasePrice = request('purchasePrice');
-        $article->stock = request('stock');
-        $article->printer = request('printer');
-
-        $article->save();
-        $articleList = Article::all();
-
-
+        $invoice = new Invoice();
+        $invoice->status = request('status');
+        $invoice->sum = request('sum');
+        $invoice->save();
+        Log::debug($invoice); 
         return response()->json([
             'message' => 'Gespeichert!',
-            'articleList' => $articleList
+            'invoiceId' => $invoice->id
         ],200);
 
     }
@@ -65,10 +51,10 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Invoice $invoice)
     {
         //
     }
@@ -76,10 +62,10 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Invoice $invoice)
     {
         //
     }
@@ -88,10 +74,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
+     * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Invoice $invoice)
     {
         //
     }
@@ -99,10 +85,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Invoice $invoice)
     {
         //
     }

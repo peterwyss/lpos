@@ -2,12 +2,24 @@
     import { onMount } from "svelte";
     import ArticleButtonForm from "./forms/ArticleButtonForm.svelte";
     import EditArticleButton from "./forms/EditArticleButton.svelte";
-    import ArticleForm from "./forms/ArticleForm.svelte";
+	import ArticleForm from "./forms/ArticleForm.svelte";
+	import { articleListStore }  from './../stores.js';
 
-
+	
 	onMount(() => {
 	  console.log("the component has mounted");
+	  getArticle();
+	  
 	});
+	async function getArticle(){
+          const response = await axios({
+			    url: "/article/index",
+			    method: 'GET',
+
+			});
+			articleList.set(response.data.articleList);
+
+      }
 	const options = [
 		{ form: 'ArticleButton', component: ArticleButtonForm},
 		{ form: 'EditArticleButton', component: EditArticleButton},

@@ -1,9 +1,15 @@
 <script>
 	import { onMount } from "svelte";
+	import { articleListStore } from "./../../stores.js";
 
 	var button = [];
 	var res = "";
+	let allArticle = [];
 
+	const unsubscribe = articleListStore.subscribe(value => {
+		allArticle = value;
+	});
+    console.log("allArticle: ",allArticle);
 	onMount(() => {
 	  console.log("the component has mounted");
 	});
@@ -28,6 +34,7 @@ async function saveButton(button){
 		});
 		console.log(response);
 		res = response.data.message;
+		
 
 }
 
@@ -46,10 +53,16 @@ async function saveButton(button){
                             <label for="">Name:</label>
                             <input name='name' type='text' class='form-control' id='name' bind:value="{button.name}"  >
                         </div>	
-							<div class="form-group">
-                            <label for="">Reference:</label>
-                            <input name='reference' type='text' class='form-control' id='reference' bind:value="{button.reference}" >
-                        </div>	
+						<div class="form-group">
+						   <label for="">Reference:</label>
+						   <p>Selected: {button.reference} / {button.name} / {button.level}
+						  <select id='reference'  bind:value="{button.reference}">
+						    {#each allArticle as article}
+								<option value="{article.id}">{article.name} {article.id}</option>
+							{/each}
+						  </select>
+						
+						</div>
 							<div class="form-group">
                             <label for="">Ebene:</label>
                             <input name='level' type='number' class='form-control' id='level' bind:value="{button.level}">

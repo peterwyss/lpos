@@ -36,3 +36,7 @@ Route::get('articleButton/index', 'ArticleButtonController@index');
 Route::get('articleLevel/index', 'ArticleLevelController@index');
 
 Route::post('/article/store', 'ArticleController@store');
+Route::get('/article/index', 'ArticleController@index');
+
+Route::post('/invoice/store', 'InvoiceController@store');
+

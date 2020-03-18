@@ -1,8 +1,15 @@
 <script>
 	import { onMount } from "svelte";
+	import { articleListStore } from "./../../stores.js";
 
 	var article = [];
 	var res = "";
+	var allArticle = [];
+	var formMessage = "";
+
+	const unsubscribe = articleList.subscribe(value => {
+		allArticle = value;
+	});
 
 	onMount(() => {
 	  console.log("the component has mounted");
@@ -25,14 +32,27 @@ async function saveArticle(article){
 				'category' : article.category,
 				'price'    : article.price,
 				'purchasePrice' : article.purchasePrice,
-				'stock' : article.stock
+				'stock' : article.stock,
+				'printer' : 1
 			}
 		});
-		console.log(response);
+		console.log("Response: ",response);
 		res = response.data.message;
+		articleList.set(response.data.articleList);
 
 }
 
+function pluChange(e){
+	console.log(e.target.value);
+	console.log(allArticle);
+	const existPlu = allArticle.find(element => element.plu == e.target.value)
+	console.log(existPlu);
+	if(existPlu != undefined){
+		formMessage = "Diese Nummer wird bereits verwendet!"
+	}else{
+		formMessage = " "
+	}
+}
 
 </script>
 
@@ -50,7 +70,8 @@ async function saveArticle(article){
                         </div>	
 						<div class="form-group">
                             <label for="">PLU:</label>
-                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{article.plu}" >
+                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{article.plu}" on:change="{(e) => pluChange(e)}">
+							<p>{formMessage}</p>
                         </div>	
 						<div class="form-group">
                             <label for="">Kategorie:</label>
@@ -71,7 +92,10 @@ async function saveArticle(article){
                             <label for="">Bestand:</label>
                             <input name='stock' type='number' class='form-control' id='stock' bind:value="{article.stock}">
                         </div>
-
+						<div class="form-group">
+                            <label for="">Printer:</label>
+                            <input name='printer' type='number' class='form-control' id='stock' bind:value="{article.printer}">
+                        </div>
 							<input type="button"  on:click|preventDefault="{() => saveArticle(article)}" value="Save" />
 						
 					</div>
