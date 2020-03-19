@@ -3,9 +3,10 @@
 	import { articleButtonList } from './stores.js';
 	import { articleLevelList } from './stores.js';
 	import { articleListStore} from './stores.js';
-	import ArticleButtons from './ArticleButtons.svelte';
+	import {orderListStore}  from './stores.js';
+ 	import ArticleButtons from './ArticleButtons.svelte';
 
-	import OrderList, { sortOrderList } from "./OrderList.svelte";
+	import OrderList from "./OrderList.svelte";
 
 	let articleButtonData = [];    /* Die List mit allen Artikeln */
 	let articleLevelData = [];     /* Die Liste mit allen Ebenen */
@@ -16,6 +17,9 @@
 	var orderList = [];
 	var sortedList = [];
 
+  const unsubscribe = orderListStore.subscribe(value => {
+	orderList = value;
+  });
 
 
 	onMount(async () => {
@@ -64,7 +68,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card" >
-					<div class="card-header">Example Component {invoiceId}</div>
+					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
 
 					{#each articleLevelData as level}
@@ -72,7 +76,7 @@
 					{/each}  					
 
 					<ArticleButtons list={filteredArticleList} />
-					<OrderList />
+					<OrderList orderList={orderList}/>
 					</div>
 				</div>
 

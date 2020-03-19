@@ -37018,7 +37018,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./node_modules/svelte/internal/index.mjs ***!
   \************************************************/
-/*! exports provided: HtmlTag, SvelteComponent, SvelteComponentDev, SvelteElement, action_destroyer, add_attribute, add_classes, add_flush_callback, add_location, add_render_callback, add_resize_listener, add_transform, afterUpdate, append, append_dev, assign, attr, attr_dev, beforeUpdate, bind, binding_callbacks, blank_object, bubble, check_outros, children, claim_component, claim_element, claim_space, claim_text, clear_loops, component_subscribe, createEventDispatcher, create_animation, create_bidirectional_transition, create_component, create_in_transition, create_out_transition, create_slot, create_ssr_component, current_component, custom_event, dataset_dev, debug, destroy_block, destroy_component, destroy_each, detach, detach_after_dev, detach_before_dev, detach_between_dev, detach_dev, dirty_components, dispatch_dev, each, element, element_is, empty, escape, escaped, exclude_internal_props, fix_and_destroy_block, fix_and_outro_and_destroy_block, fix_position, flush, getContext, get_binding_group_value, get_current_component, get_slot_changes, get_slot_context, get_spread_object, get_spread_update, get_store_value, globals, group_outros, handle_promise, has_prop, identity, init, insert, insert_dev, intros, invalid_attribute_name_character, is_client, is_function, is_promise, listen, listen_dev, loop, loop_guard, missing_component, mount_component, noop, not_equal, now, null_to_empty, object_without_properties, onDestroy, onMount, once, outro_and_destroy_block, prevent_default, prop_dev, query_selector_all, raf, run, run_all, safe_not_equal, schedule_update, select_multiple_value, select_option, select_options, select_value, self, setContext, set_attributes, set_current_component, set_custom_element_data, set_data, set_data_dev, set_input_type, set_input_value, set_now, set_raf, set_store_value, set_style, set_svg_attributes, space, spread, stop_propagation, subscribe, svg_element, text, tick, time_ranges_to_array, to_number, toggle_class, transition_in, transition_out, update_keyed_each, validate_component, validate_each_argument, validate_each_keys, validate_slots, validate_store, xlink_attr */
+/*! exports provided: HtmlTag, SvelteComponent, SvelteComponentDev, SvelteElement, action_destroyer, add_attribute, add_classes, add_flush_callback, add_location, add_render_callback, add_resize_listener, add_transform, afterUpdate, append, append_dev, assign, attr, attr_dev, beforeUpdate, bind, binding_callbacks, blank_object, bubble, check_outros, children, claim_component, claim_element, claim_space, claim_text, clear_loops, component_subscribe, compute_rest_props, createEventDispatcher, create_animation, create_bidirectional_transition, create_component, create_in_transition, create_out_transition, create_slot, create_ssr_component, current_component, custom_event, dataset_dev, debug, destroy_block, destroy_component, destroy_each, detach, detach_after_dev, detach_before_dev, detach_between_dev, detach_dev, dirty_components, dispatch_dev, each, element, element_is, empty, escape, escaped, exclude_internal_props, fix_and_destroy_block, fix_and_outro_and_destroy_block, fix_position, flush, getContext, get_binding_group_value, get_current_component, get_slot_changes, get_slot_context, get_spread_object, get_spread_update, get_store_value, globals, group_outros, handle_promise, has_prop, identity, init, insert, insert_dev, intros, invalid_attribute_name_character, is_client, is_function, is_promise, listen, listen_dev, loop, loop_guard, missing_component, mount_component, noop, not_equal, now, null_to_empty, object_without_properties, onDestroy, onMount, once, outro_and_destroy_block, prevent_default, prop_dev, query_selector_all, raf, run, run_all, safe_not_equal, schedule_update, select_multiple_value, select_option, select_options, select_value, self, setContext, set_attributes, set_current_component, set_custom_element_data, set_data, set_data_dev, set_input_type, set_input_value, set_now, set_raf, set_store_value, set_style, set_svg_attributes, space, spread, stop_propagation, subscribe, svg_element, text, tick, time_ranges_to_array, to_number, toggle_class, transition_in, transition_out, update_keyed_each, validate_component, validate_each_argument, validate_each_keys, validate_slots, validate_store, xlink_attr */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37054,6 +37054,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "claim_text", function() { return claim_text; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clear_loops", function() { return clear_loops; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "component_subscribe", function() { return component_subscribe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compute_rest_props", function() { return compute_rest_props; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventDispatcher", function() { return createEventDispatcher; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create_animation", function() { return create_animation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create_bidirectional_transition", function() { return create_bidirectional_transition; });
@@ -37257,6 +37258,14 @@ function exclude_internal_props(props) {
         if (k[0] !== '$')
             result[k] = props[k];
     return result;
+}
+function compute_rest_props(props, keys) {
+    const rest = {};
+    keys = new Set(keys);
+    for (const k in props)
+        if (!keys.has(k) && k[0] !== '$')
+            rest[k] = props[k];
+    return rest;
 }
 function once(fn) {
     let ran = false;
@@ -37599,9 +37608,8 @@ class HtmlTag {
     }
 }
 
-let stylesheet;
+const active_docs = new Set();
 let active = 0;
-let current_rules = {};
 // https://github.com/darkskyapp/string-hash/blob/master/index.js
 function hash(str) {
     let hash = 5381;
@@ -37619,12 +37627,11 @@ function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
     }
     const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
     const name = `__svelte_${hash(rule)}_${uid}`;
+    const doc = node.ownerDocument;
+    active_docs.add(doc);
+    const stylesheet = doc.__svelte_stylesheet || (doc.__svelte_stylesheet = doc.head.appendChild(element('style')).sheet);
+    const current_rules = doc.__svelte_rules || (doc.__svelte_rules = {});
     if (!current_rules[name]) {
-        if (!stylesheet) {
-            const style = element('style');
-            document.head.appendChild(style);
-            stylesheet = style.sheet;
-        }
         current_rules[name] = true;
         stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
     }
@@ -37634,24 +37641,31 @@ function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
     return name;
 }
 function delete_rule(node, name) {
-    node.style.animation = (node.style.animation || '')
-        .split(', ')
-        .filter(name
+    const previous = (node.style.animation || '').split(', ');
+    const next = previous.filter(name
         ? anim => anim.indexOf(name) < 0 // remove specific animation
         : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
-    )
-        .join(', ');
-    if (name && !--active)
-        clear_rules();
+    );
+    const deleted = previous.length - next.length;
+    if (deleted) {
+        node.style.animation = next.join(', ');
+        active -= deleted;
+        if (!active)
+            clear_rules();
+    }
 }
 function clear_rules() {
     raf(() => {
         if (active)
             return;
-        let i = stylesheet.cssRules.length;
-        while (i--)
-            stylesheet.deleteRule(i);
-        current_rules = {};
+        active_docs.forEach(doc => {
+            const stylesheet = doc.__svelte_stylesheet;
+            let i = stylesheet.cssRules.length;
+            while (i--)
+                stylesheet.deleteRule(i);
+            doc.__svelte_rules = {};
+        });
+        active_docs.clear();
     });
 }
 
@@ -38236,7 +38250,7 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     const did_move = new Set();
     function insert(block) {
         transition_in(block, 1);
-        block.m(node, next);
+        block.m(node, next, lookup.has(block.key));
         lookup.set(block.key, block);
         next = block.first;
         n--;
@@ -38557,8 +38571,10 @@ function init(component, options, instance, create_fragment, not_equal, props, d
     $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
     if (options.target) {
         if (options.hydrate) {
+            const nodes = children(options.target);
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            $$.fragment && $$.fragment.l(children(options.target));
+            $$.fragment && $$.fragment.l(nodes);
+            nodes.forEach(detach);
         }
         else {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -38627,7 +38643,7 @@ class SvelteComponent {
 }
 
 function dispatch_dev(type, detail) {
-    document.dispatchEvent(custom_event(type, Object.assign({ version: '3.19.2' }, detail)));
+    document.dispatchEvent(custom_event(type, Object.assign({ version: '3.20.1' }, detail)));
 }
 function append_dev(target, node) {
     dispatch_dev("SvelteDOMInsert", { target, node });
@@ -39013,7 +39029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forms_EditArticleButton_svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./forms/EditArticleButton.svelte */ "./resources/js/components/admin/forms/EditArticleButton.svelte");
 /* harmony import */ var _forms_ArticleForm_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./forms/ArticleForm.svelte */ "./resources/js/components/admin/forms/ArticleForm.svelte");
 /* harmony import */ var _stores_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../stores.js */ "./resources/js/components/stores.js");
-/* resources/js/components/admin/Admin.svelte generated by Svelte v3.19.2 */
+/* resources/js/components/admin/Admin.svelte generated by Svelte v3.20.1 */
 
 
 
@@ -39110,7 +39126,7 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "row justify-content-center");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div5, "class", "container");
 		},
-		m(target, anchor) {
+		m(target, anchor, remount) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div5);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, div4);
@@ -39133,6 +39149,7 @@ function create_fragment(ctx) {
 			}
 
 			current = true;
+			if (remount) dispose();
 			dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(select, "change", /*select_change_handler*/ ctx[2]);
 		},
 		p(ctx, [dirty]) {
@@ -39265,7 +39282,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
 /* harmony import */ var _stores_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../stores.js */ "./resources/js/components/stores.js");
-/* resources/js/components/admin/forms/ArticleButtonForm.svelte generated by Svelte v3.19.2 */
+/* resources/js/components/admin/forms/ArticleButtonForm.svelte generated by Svelte v3.20.1 */
 
 
 
@@ -39442,7 +39459,7 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div8, "class", "row justify-content-center");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div9, "class", "container");
 		},
-		m(target, anchor) {
+		m(target, anchor, remount) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div9);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div9, div8);
@@ -39486,6 +39503,7 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input1, /*button*/ ctx[0].level);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, t19);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, input2);
+			if (remount) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
 
 			dispose = [
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input0, "input", /*input0_input_handler*/ ctx[5]),
@@ -39641,7 +39659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
 /* harmony import */ var _stores_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../stores.js */ "./resources/js/components/stores.js");
-/* resources/js/components/admin/forms/ArticleForm.svelte generated by Svelte v3.19.2 */
+/* resources/js/components/admin/forms/ArticleForm.svelte generated by Svelte v3.20.1 */
 
 
 
@@ -39843,7 +39861,7 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div12, "class", "row justify-content-center");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "class", "container");
 		},
-		m(target, anchor) {
+		m(target, anchor, remount) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div13);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div13, div12);
@@ -39901,6 +39919,7 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input6, /*article*/ ctx[0].printer);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div9, t26);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div9, input7);
+			if (remount) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
 
 			dispose = [
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input0, "input", /*input0_input_handler*/ ctx[7]),
@@ -40100,7 +40119,7 @@ class ArticleForm extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
-/* resources/js/components/admin/forms/EditArticleButton.svelte generated by Svelte v3.19.2 */
+/* resources/js/components/admin/forms/EditArticleButton.svelte generated by Svelte v3.20.1 */
 
 
 
@@ -40199,7 +40218,7 @@ function create_each_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input2, "id", "name");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "form-group");
 		},
-		m(target, anchor) {
+		m(target, anchor, remount) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, p, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(p, t0);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(p, t1);
@@ -40223,6 +40242,7 @@ function create_each_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, input2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input2, /*button*/ ctx[1].level);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, t12);
+			if (remount) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
 
 			dispose = [
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input0, "input", input0_input_handler),

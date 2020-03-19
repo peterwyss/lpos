@@ -1,15 +1,12 @@
 <script>
   import { articleListStore } from './stores.js';
-  import { orderListStore } from './stores.js';
-	import { beforeUpdate, onMount  } from "svelte";
+  import { orderListStore } from './stores.js'; 
+  import { beforeUpdate, onMount  } from "svelte";
+  
   let invoiceId = 0;
-  let orderList = [];
+  export let orderList = [];
   let sortedOrderList = [];
   
-  const unsubscribe = orderListStore.subscribe(value => {
-	orderList = value;
-  });
-
   onMount(() => {
     console.log("OrderList mounted");
 
@@ -31,33 +28,37 @@
   }
 
 beforeUpdate(() =>{
-  sortOrderList(orderList);
+  console.log("orderList inside: ", orderList);
+  sortedOrderList =   sortOrderList(orderList);
+  console.log("sortedOrderList inside ", sortedOrderList)
 })
 
 
 /* Sortiert die Artikel nach id */
 
-export function sortOrderList(){
-
+ function sortOrderList(orderList){
   sortedOrderList = [];
+  let list = JSON.parse(JSON.stringify(orderList)); 
   console.log( " sortedOrderList: ", sortedOrderList);
-  orderList.forEach((element,i) => {
+  list.forEach((element,i) => {
     if(sortedOrderList.length == 0){
-      sortedOrderList =  newElement(element,sortedOrderList);
+      let elem = list.slice(0,1)
+      sortedOrderList =  newElement(elem[0]);
     }else{
       var exist = findElement(element);
       console.log("exist: ", exist);
       if(exist < 0 || sortedOrderList[exist].group == 0){
-        sortedOrderList =  newElement(element,sortedOrderList);
+        let elem = list.slice(i,i+1);
+        sortedOrderList =  newElement(elem[0]);
       }else{
         sortedOrderList[exist].quantity++;
       }
     }
   });
-    console.log(" sortedOrderList: ", sortedOrderList );
-
+    console.log(" sortedOrderList: ", sortedOrderList, "list: ",  list, "orderList: ",orderList);
+    return sortedOrderList;
 }
-function newElement(element,sortedOrderList){
+function newElement(element){
   element.quantity = 1;
   sortedOrderList = [...sortedOrderList, element];
   return sortedOrderList;
@@ -75,15 +76,44 @@ function findElement(nElement){
 function handleDblClick(index){
   console.log("doppelclick ",index);
   sortedOrderList[index].group = 0;
+  console.log(sortedOrderList[index].id," ",sortedOrderList[index].name);
 }
 
+function increment(i){
+    console.log(i)
+    
+}
+function decrement(i){
+    console.log(i)
+}
+function deleteElement(i){
+  console.log("delete: ", orderList," ",i, "plu: ", sortedOrderList[i].plu);
+  let plu = sortedOrderList[i].plu;
+  console.log("Länge: ",orderList.length);
+    let index = 0;
+    var l = orderList.length;
+    for(index = l-1 ;index > -1 ; index--){
+        console.log("index: ",index," l: ",l," sortedOrderlist.length: ", orderList.length);
+        let elementPlu = orderList[index ].plu;  
+            if(elementPlu == plu){
+                orderList.splice(index,1)
+             }
+    }
+    orderListStore.set(orderList);
+
+}
 </script>
 
 
 <ul class="list-group">
-<button on:click={() => sortOrderList()}>click</button>
-
   {#each sortedOrderList as element,index}
-    <li class="list-group-item" on:dblclick={() => handleDblClick(index)}>{element.quantity} {element.name} {element.price}</li>
+    <li class="list-group-item" on:dblclick={() => handleDblClick( index)}>
+        {element.quantity} {element.name} {element.price}
+        <button type='button' class='btn btn-info' on:click={() => increment(index)}>+</button>
+        <button type='button' class='btn btn-info' on:click={() => decrement(index)}>-</button>
+        <button type='button' class='btn btn-info' on:click={() => deleteElement(index)}>Delete</button>
+        
+    
+    </li>
   {/each}
 </ul>
