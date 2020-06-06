@@ -17,7 +17,7 @@
 			    method: 'GET',
 
 			});
-			articleList.set(response.data.articleList);
+			articleListStore.set(response.data.articleList);
 
       }
 	const options = [

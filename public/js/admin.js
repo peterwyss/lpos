@@ -39224,7 +39224,7 @@ function create_fragment(ctx) {
 
 async function getArticle() {
 	const response = await axios({ url: "/article/index", method: "GET" });
-	articleList.set(response.data.articleList);
+	_stores_js__WEBPACK_IMPORTED_MODULE_5__["articleListStore"].set(response.data.articleList);
 }
 
 function instance($$self, $$props, $$invalidate) {
@@ -39990,7 +39990,7 @@ function instance($$self, $$props, $$invalidate) {
 	var allArticle = [];
 	var formMessage = "";
 
-	const unsubscribe = articleList.subscribe(value => {
+	const unsubscribe = _stores_js__WEBPACK_IMPORTED_MODULE_2__["articleListStore"].subscribe(value => {
 		allArticle = value;
 	});
 
@@ -40022,7 +40022,7 @@ function instance($$self, $$props, $$invalidate) {
 
 		console.log("Response: ", response);
 		$$invalidate(1, res = response.data.message);
-		articleList.set(response.data.articleList);
+		_stores_js__WEBPACK_IMPORTED_MODULE_2__["articleListStore"].set(response.data.articleList);
 	}
 
 	function pluChange(e) {

@@ -7,7 +7,7 @@
 	var allArticle = [];
 	var formMessage = "";
 
-	const unsubscribe = articleList.subscribe(value => {
+	const unsubscribe = articleListStore.subscribe(value => {
 		allArticle = value;
 	});
 
@@ -38,7 +38,7 @@ async function saveArticle(article){
 		});
 		console.log("Response: ",response);
 		res = response.data.message;
-		articleList.set(response.data.articleList);
+		articleListStore.set(response.data.articleList);
 
 }
 

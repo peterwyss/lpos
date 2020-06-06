@@ -39457,21 +39457,21 @@ __webpack_require__.r(__webpack_exports__);
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[13] = list[i];
-	child_ctx[15] = i;
+	child_ctx[14] = list[i];
+	child_ctx[16] = i;
 	return child_ctx;
 }
 
-// (108:2) {#each sortedOrderList as element,index}
+// (111:2) {#each sortedOrderList as element,index}
 function create_each_block(ctx) {
 	let li;
-	let t0_value = /*element*/ ctx[13].quantity + "";
+	let t0_value = /*element*/ ctx[14].quantity + "";
 	let t0;
 	let t1;
-	let t2_value = /*element*/ ctx[13].name + "";
+	let t2_value = /*element*/ ctx[14].name + "";
 	let t2;
 	let t3;
-	let t4_value = /*element*/ ctx[13].price + "";
+	let t4_value = /*element*/ ctx[14].price + "";
 	let t4;
 	let t5;
 	let button0;
@@ -39483,19 +39483,19 @@ function create_each_block(ctx) {
 	let dispose;
 
 	function click_handler(...args) {
-		return /*click_handler*/ ctx[9](/*index*/ ctx[15], ...args);
+		return /*click_handler*/ ctx[10](/*index*/ ctx[16], ...args);
 	}
 
 	function click_handler_1(...args) {
-		return /*click_handler_1*/ ctx[10](/*index*/ ctx[15], ...args);
+		return /*click_handler_1*/ ctx[11](/*index*/ ctx[16], ...args);
 	}
 
 	function click_handler_2(...args) {
-		return /*click_handler_2*/ ctx[11](/*index*/ ctx[15], ...args);
+		return /*click_handler_2*/ ctx[12](/*index*/ ctx[16], ...args);
 	}
 
 	function dblclick_handler(...args) {
-		return /*dblclick_handler*/ ctx[12](/*index*/ ctx[15], ...args);
+		return /*dblclick_handler*/ ctx[13](/*index*/ ctx[16], ...args);
 	}
 
 	return {
@@ -39549,9 +39549,9 @@ function create_each_block(ctx) {
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
-			if (dirty & /*sortedOrderList*/ 1 && t0_value !== (t0_value = /*element*/ ctx[13].quantity + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t0, t0_value);
-			if (dirty & /*sortedOrderList*/ 1 && t2_value !== (t2_value = /*element*/ ctx[13].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t2, t2_value);
-			if (dirty & /*sortedOrderList*/ 1 && t4_value !== (t4_value = /*element*/ ctx[13].price + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t4, t4_value);
+			if (dirty & /*sortedOrderList*/ 1 && t0_value !== (t0_value = /*element*/ ctx[14].quantity + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t0, t0_value);
+			if (dirty & /*sortedOrderList*/ 1 && t2_value !== (t2_value = /*element*/ ctx[14].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t2, t2_value);
+			if (dirty & /*sortedOrderList*/ 1 && t4_value !== (t4_value = /*element*/ ctx[14].price + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t4, t4_value);
 		},
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(li);
@@ -39587,7 +39587,7 @@ function create_fragment(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*handleDblClick, deleteElement, decrement, increment, sortedOrderList*/ 7) {
+			if (dirty & /*handleDblClick, deleteElement, decrement, increment, sortedOrderList*/ 15) {
 				each_value = /*sortedOrderList*/ ctx[0];
 				let i;
 
@@ -39619,10 +39619,6 @@ function create_fragment(ctx) {
 	};
 }
 
-function increment(i) {
-	console.log(i);
-}
-
 function decrement(i) {
 	console.log(i);
 }
@@ -39648,7 +39644,7 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	Object(svelte__WEBPACK_IMPORTED_MODULE_2__["beforeUpdate"])(() => {
-		console.log("orderList inside: ", orderList);
+		console.log("orderList beforupdate: ", orderList);
 		$$invalidate(0, sortedOrderList = sortOrderList(orderList));
 		console.log("sortedOrderList inside ", sortedOrderList);
 	});
@@ -39704,6 +39700,12 @@ function instance($$self, $$props, $$invalidate) {
 		console.log(sortedOrderList[index].id, " ", sortedOrderList[index].name);
 	}
 
+	function increment(i) {
+		console.log("element: ", i);
+		$$invalidate(0, sortedOrderList[i].quantity += 1, sortedOrderList);
+		_stores_js__WEBPACK_IMPORTED_MODULE_1__["orderListStore"].set(sortedOrderList);
+	}
+
 	function deleteElement(i) {
 		console.log("delete: ", orderList, " ", i, "plu: ", sortedOrderList[i].plu);
 		let plu = sortedOrderList[i].plu;
@@ -39729,12 +39731,13 @@ function instance($$self, $$props, $$invalidate) {
 	const dblclick_handler = index => handleDblClick(index);
 
 	$$self.$set = $$props => {
-		if ("orderList" in $$props) $$invalidate(3, orderList = $$props.orderList);
+		if ("orderList" in $$props) $$invalidate(4, orderList = $$props.orderList);
 	};
 
 	return [
 		sortedOrderList,
 		handleDblClick,
+		increment,
 		deleteElement,
 		orderList,
 		invoiceId,
@@ -39752,7 +39755,7 @@ function instance($$self, $$props, $$invalidate) {
 class OrderList extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
 	constructor(options) {
 		super();
-		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { orderList: 3 });
+		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { orderList: 4 });
 	}
 }
 

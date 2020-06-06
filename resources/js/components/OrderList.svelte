@@ -28,7 +28,7 @@
   }
 
 beforeUpdate(() =>{
-  console.log("orderList inside: ", orderList);
+  console.log("orderList beforupdate: ", orderList);
   sortedOrderList =   sortOrderList(orderList);
   console.log("sortedOrderList inside ", sortedOrderList)
 })
@@ -80,8 +80,10 @@ function handleDblClick(index){
 }
 
 function increment(i){
-    console.log(i)
-    
+    console.log("element: ",i);
+    sortedOrderList[i].quantity += 1;
+    orderListStore.set(sortedOrderList);
+
 }
 function decrement(i){
     console.log(i)
