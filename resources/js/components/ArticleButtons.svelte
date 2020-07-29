@@ -5,11 +5,16 @@ import { articleListStore} from './stores';
 
 export let list;
 
-let orderList = [];
+export let orderList = [];
 let articleList = [];
+
 
 const unsubscribe = articleListStore.subscribe(value => {
 	articleList = value;
+  });
+
+const unsubscribeOrderlist = orderListStore.subscribe(value => {
+	orderList = value;
   });
 
 async function addArticle(id){
@@ -26,6 +31,11 @@ async function addArticle(id){
 		  'addText'  : "",
 		  'group' : 1
 		}
+		/*
+		Hier das neue Element zur Orderlist hinzufügen.
+		Ist Element vorhanden = orderElement.quantity += +
+		sonst neues Element
+		*/
 		console.log("orderElement: " , orderElement);
 		orderList = [orderElement, ...orderList];
         console.log("addarticle orderList: ",orderList);

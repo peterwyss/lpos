@@ -3,15 +3,19 @@
   import { orderListStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
   
-  let invoiceId = 0;
+  //let invoiceId = 0;
   export let orderList = [];
   let sortedOrderList = [];
+
+  const unsubscribeOrderlist = orderListStore.subscribe(value => {
+	orderList = value;
+  });
   
   onMount(() => {
     console.log("OrderList mounted");
 
   });
-
+/*
 	async function newInvoice(){
           const response = await axios({
 			    url: "/invoice/store",
@@ -26,6 +30,7 @@
       console.log("invoiceId: ", invoiceId);
 
   }
+*/
 
 beforeUpdate(() =>{
   console.log("orderList beforupdate: ", orderList);
@@ -73,6 +78,7 @@ function findElement(nElement){
   });
   return ex;
 } 
+
 function handleDblClick(index){
   console.log("doppelclick ",index);
   sortedOrderList[index].group = 0;
@@ -80,7 +86,7 @@ function handleDblClick(index){
 }
 
 function increment(i){
-    console.log("element: ",i);
+    console.log("element: ",sortedOrderList[i].plu);
     sortedOrderList[i].quantity += 1;
     orderListStore.set(sortedOrderList);
 
@@ -104,6 +110,7 @@ function deleteElement(i){
     orderListStore.set(orderList);
 
 }
+
 </script>
 
 
