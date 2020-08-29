@@ -61,6 +61,10 @@
 		console.log("Filtered: ",filteredArticleList);
 		console.log("Level: ",articleLevel);
 	}
+
+	let testFunc = () =>{
+		console.log("TEST");
+	}
 </script>
 
 <main>
@@ -75,7 +79,7 @@
 					  <button type="button"  class="btn btn-primary" on:click={filter(level.id)}>{level.name} </button>
 					{/each}  					
 
-					<ArticleButtons list={filteredArticleList} />
+					<ArticleButtons list={filteredArticleList} {testFunc}/>
 					<OrderList orderList={orderList}/>
 					</div>
 				</div>

@@ -42,8 +42,11 @@ async function addArticle(id){
         orderListStore.set(orderList)
 	}
 
+export let testFunc;
 
 </script>
+
+    <input type="button" value="test" on:click={testFunc}/>
 
 {#each list as button}
     <input type="button" value="{button.name}" on:click|preventDefault={() => addArticle(button.reference)}/>

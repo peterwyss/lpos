@@ -2,6 +2,7 @@
   import { articleListStore } from './stores.js';
   import { orderListStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
+  import { testFunc } from './ArticleButtons.svelte';
   
   //let invoiceId = 0;
   export let orderList = [];
@@ -80,6 +81,7 @@ function findElement(nElement){
 } 
 
 function handleDblClick(index){
+ 
   console.log("doppelclick ",index);
   sortedOrderList[index].group = 0;
   console.log(sortedOrderList[index].id," ",sortedOrderList[index].name);
