@@ -3,19 +3,31 @@
   import { orderListStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
   import { testFunc } from './ArticleButtons.svelte';
-  
-  //let invoiceId = 0;
-  export let orderList = [];
-  let sortedOrderList = [];
+	import Modal from './Modal.svelte';
 
+  	let showModal = false;
+
+  //let invoiceId = 0;
+  let orderList = [];
+  let elementToEdit = {};
+  let addText = "";
   const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;
   });
   
-  onMount(() => {
-    console.log("OrderList mounted");
+ 
+/*
+ $: {
+   console.log("reactive: ", orderList)
+   orderList = rawOrderList.slice();
+   let elem = orderList.slice(0,1);
+   console.log("elem: ",elem);
+   elem.quantity = 1;
+   console.log("elem: ",elem," orderList: ", orderList, "rawOrderList: ", rawOrderList);
+   sortedOrderList = sortOrderList(orderList);
+   console.log(sortedOrderList);
 
-  });
+   } 
 /*
 	async function newInvoice(){
           const response = await axios({
@@ -33,52 +45,10 @@
   }
 */
 
-beforeUpdate(() =>{
-  console.log("orderList beforupdate: ", orderList);
-  sortedOrderList =   sortOrderList(orderList);
-  console.log("sortedOrderList inside ", sortedOrderList)
-})
 
 
-/* Sortiert die Artikel nach id */
 
- function sortOrderList(orderList){
-  sortedOrderList = [];
-  let list = JSON.parse(JSON.stringify(orderList)); 
-  console.log( " sortedOrderList: ", sortedOrderList);
-  list.forEach((element,i) => {
-    if(sortedOrderList.length == 0){
-      let elem = list.slice(0,1)
-      sortedOrderList =  newElement(elem[0]);
-    }else{
-      var exist = findElement(element);
-      console.log("exist: ", exist);
-      if(exist < 0 || sortedOrderList[exist].group == 0){
-        let elem = list.slice(i,i+1);
-        sortedOrderList =  newElement(elem[0]);
-      }else{
-        sortedOrderList[exist].quantity++;
-      }
-    }
-  });
-    console.log(" sortedOrderList: ", sortedOrderList, "list: ",  list, "orderList: ",orderList);
-    return sortedOrderList;
-}
-function newElement(element){
-  element.quantity = 1;
-  sortedOrderList = [...sortedOrderList, element];
-  return sortedOrderList;
-}
 
-function findElement(nElement){
-  var ex = -1;
-  sortedOrderList.forEach((element,i) =>{
-      if(nElement.id === element.id){
-          ex =  i;
-         }
-  });
-  return ex;
-} 
 
 function handleDblClick(index){
  
@@ -112,19 +82,42 @@ function deleteElement(i){
     orderListStore.set(orderList);
 
 }
-
+function editElement(index) {
+  console.log("index: ",index, " orderlist.element ", orderList[index]);
+  elementToEdit = orderList[index];
+  showModal = true;
+  
+}
+function handleChange(e){
+  console.log(e.target.value);
+}
 </script>
 
-
 <ul class="list-group">
-  {#each sortedOrderList as element,index}
+  {#each orderList as element,index}
     <li class="list-group-item" on:dblclick={() => handleDblClick( index)}>
-        {element.quantity} {element.name} {element.price}
+        {element.quantity} {element.name} {element.price.toFixed(2)} <b>{(element.quantity * element.price).toFixed(2)}</b>
         <button type='button' class='btn btn-info' on:click={() => increment(index)}>+</button>
         <button type='button' class='btn btn-info' on:click={() => decrement(index)}>-</button>
         <button type='button' class='btn btn-info' on:click={() => deleteElement(index)}>Delete</button>
+        <button type='button' class='btn btn-info' on:click={() => editElement(index)}>Edit</button>
         
     
     </li>
   {/each}
 </ul>
+<button on:click="{() => showModal = true}">
+	show modal
+</button>
+{#if showModal}
+	<Modal on:close="{() => showModal = false}">
+		<h2 slot="header">
+			{elementToEdit.name}
+		</h2>
+    <p>{addText}</p>
+  <input type="number" value="{elementToEdit.quantity}" on:change="{handleChange}" max="{elementToEdit.quantity}"/>
+  <input type="text" on:change="{handleChange}" bind:value={addText}/>
+		
+
+	</Modal>
+{/if}

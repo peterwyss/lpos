@@ -5,8 +5,9 @@
 	import { articleListStore} from './stores.js';
 	import {orderListStore}  from './stores.js';
  	import ArticleButtons from './ArticleButtons.svelte';
-
 	import OrderList from "./OrderList.svelte";
+	import Display from "./Display.svelte";
+
 
 	let articleButtonData = [];    /* Die List mit allen Artikeln */
 	let articleLevelData = [];     /* Die Liste mit allen Ebenen */
@@ -15,7 +16,8 @@
 	var invoiceId = 0;			   /* ID der aktuellen Rechnung */	
     var articles = [];
 	var orderList = [];
-	var sortedList = [];
+	let orderElement = {};
+
 
   const unsubscribe = orderListStore.subscribe(value => {
 	orderList = value;
@@ -65,6 +67,52 @@
 	let testFunc = () =>{
 		console.log("TEST");
 	}
+
+	function addArticle(id){
+    console.log(filteredArticleList);
+		const found = articles.find(element => element.id == id);
+		console.log("found: ", found);
+		console.log("found.id: ",found.id);
+		orderElement = {
+		  'quantity' : 1,
+		  'id' : found.id,
+		  'plu' : found.plu,
+		  'name' : found.name,
+		  'price' : found.price,
+		  'addText'  : "",
+		  'group' : 0
+		}
+		/*
+		Hier das neue Element zur Orderlist hinzufügen.
+		Ist Element vorhanden = orderElement.quantity += +
+		sonst neues Element
+		*/
+
+		console.log("orderElement: " , orderElement);
+		if(orderList.length == 0){
+			orderList = [orderElement, ...orderList];
+		}else{
+			let exist = findElement(orderElement);
+			if(exist < 0){
+				orderList = [orderElement, ...orderList];
+
+			}else{
+				orderList[exist].quantity++;
+			}
+
+		}	
+        console.log("addarticle orderList: ",orderList);
+        orderListStore.set(orderList)
+	}
+	function findElement(nElement){
+        var ex = -1;
+        orderList.forEach((element,i) =>{
+            if(nElement.id === element.id){
+                ex =  i;
+            }
+        });
+        return ex;
+    } 
 </script>
 
 <main>
@@ -72,6 +120,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card" >
+					<Display  {orderElement}/>
 					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
 
@@ -79,7 +128,7 @@
 					  <button type="button"  class="btn btn-primary" on:click={filter(level.id)}>{level.name} </button>
 					{/each}  					
 
-					<ArticleButtons list={filteredArticleList} {testFunc}/>
+					<ArticleButtons {filteredArticleList} {addArticle} />
 					<OrderList orderList={orderList}/>
 					</div>
 				</div>
@@ -90,4 +139,8 @@
 			</div>
 		</div>
 	</div>
+
+
+
 </main>
+
