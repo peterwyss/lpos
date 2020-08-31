@@ -7,6 +7,7 @@
  	import ArticleButtons from './ArticleButtons.svelte';
 	import OrderList from "./OrderList.svelte";
 	import Display from "./Display.svelte";
+	import ControlButtons from "./ControlButtons.svelte";
 
 
 	let articleButtonData = [];    /* Die List mit allen Artikeln */
@@ -122,6 +123,7 @@
 			<div class="col-md-8">
 				<div class="card" >
 					<Display  {orderElement}/>
+					<ControlButtons/>
 					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
 
@@ -130,7 +132,7 @@
 					{/each}  					
 
 					<ArticleButtons {filteredArticleList} {addArticle} />
-					<OrderList orderList={orderList}/>
+					<OrderList orderList={orderList} on:pressedEnter={testFunc}/>
 					</div>
 				</div>
 

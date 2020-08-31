@@ -60,27 +60,18 @@ function handleDblClick(index){
 }
 
 function increment(i){
-    console.log("element: ",sortedOrderList[i].plu);
-    sortedOrderList[i].quantity += 1;
-    orderListStore.set(sortedOrderList);
+    orderList[i].quantity++;
+    orderListStore.set(orderList);
 
 }
 function decrement(i){
     console.log(i)
+    orderList[i].quantity--;
+    orderListStore.set(orderList);
+
 }
 function deleteElement(i){
-  console.log("delete: ", orderList," ",i, "plu: ", sortedOrderList[i].plu);
-  let plu = sortedOrderList[i].plu;
-  console.log("Länge: ",orderList.length);
-    let index = 0;
-    var l = orderList.length;
-    for(index = l-1 ;index > -1 ; index--){
-        console.log("index: ",index," l: ",l," sortedOrderlist.length: ", orderList.length);
-        let elementPlu = orderList[index ].plu;  
-            if(elementPlu == plu){
-                orderList.splice(index,1)
-             }
-    }
+    orderList.splice(i,1)
     orderListStore.set(orderList);
 
 }
@@ -88,33 +79,43 @@ function editElement(index) {
   console.log("index: ",index, " orderlist.element ", orderList[index]);
   elementIndex = index;
   elementToEdit = orderList[index];
+  elementQuantity = orderList[index].quantity;
   showModal = true;
   
 }
 function handleChange(e){
   console.log(e.target.value);
-  elementQuantity = e.target.value;
+  //elementQuantity = orderList[elementIndex].quantity;
+  //elementQuantity = e.target.value;
 }
 function handleChangeText(e) {
   console.log(e.target.value);
-  orderList[elementIndex].addText = e.target.value;  //erzeugt Fehler, alle Element erhalten den Text. Es sollte aber nur die gewählte Anzahl sein
+  addText = e.target.value;  
 } 
 
 function saveChange() {
-      orderList[elementIndex].quantity = orderList[elementIndex].quantity - elementQuantity;
       let el = orderList[elementIndex];
   		let orderElement = {
-		  'quantity' : el.quantity,
+		  'quantity' : elementQuantity,
 		  'id' : el.id,
 		  'plu' : el.plu,
 		  'name' : el.name,
 		  'price' : el.price,
-		  'addText'  : el.addText,
+		  'addText'  : addText,
 		  'group' : 0
-		}
-    orderList = [...orderList,orderElement];
+    }
+      console.log(elementQuantity," === " ,elementToEdit.quantity)
+
+    if(elementQuantity === elementToEdit.quantity){
+      orderList[elementIndex].group = 0;
+      orderList[elementIndex].addText = addText;
+    }else{
+      orderList[elementIndex].quantity = orderList[elementIndex].quantity - elementQuantity;
+      orderList = [...orderList,orderElement];
+    }
     console.log("save: ", orderList);
-    orderListStore.set(orderList)
+    orderListStore.set(orderList);
+    addText = "";
 
 }
 
@@ -123,7 +124,10 @@ function saveChange() {
 <ul class="list-group">
   {#each orderList as element,index}
     <li class="list-group-item" on:dblclick={() => handleDblClick( index)}>
-        {element.quantity} {element.name} {element.price.toFixed(2)} <b>{(element.quantity * element.price).toFixed(2)}</b>
+        {element.quantity} {element.name} {element.price.toFixed(2)} <b>{(element.quantity * element.price).toFixed(2)}</b><br/>
+        {#if element.addText != ""}
+        {element.addText}
+        {/if}
         <button type='button' class='btn btn-info' on:click={() => increment(index)}>+</button>
         <button type='button' class='btn btn-info' on:click={() => decrement(index)}>-</button>
         <button type='button' class='btn btn-info' on:click={() => deleteElement(index)}>Delete</button>
@@ -140,7 +144,7 @@ function saveChange() {
 			{elementToEdit.name}
 		</h2>
     <p>{addText}</p>
-  <input type="number" value="{elementToEdit.quantity}" on:change="{handleChange}" max="{elementToEdit.quantity}"/>
+  <input type="number"  on:change="{handleChange}" max="{elementToEdit.quantity}" bind:value="{elementQuantity}"/>
   <input type="text" on:change="{handleChangeText}" bind:value={addText}/>
 	<input type="button" on:click={saveChange} value="Speichern" />	
 

@@ -3,6 +3,8 @@
     import ArticleButtonForm from "./forms/ArticleButtonForm.svelte";
     import EditArticleButton from "./forms/EditArticleButton.svelte";
 	import ArticleForm from "./forms/ArticleForm.svelte";
+	import ArticleLevelForm from "./forms/ArticleLevelForm.svelte";
+	
 	import { articleListStore }  from './../stores.js';
 
 	
@@ -23,7 +25,8 @@
 	const options = [
 		{ form: 'ArticleButton', component: ArticleButtonForm},
 		{ form: 'EditArticleButton', component: EditArticleButton},
-	    { form: 'ArticleForm', component: ArticleForm}
+	    { form: 'ArticleForm', component: ArticleForm},
+	    { form: 'ArticleLevelForm', component: ArticleLevelForm}
 
 	]
     let activeForm = options[0];
