@@ -80,7 +80,7 @@
 		  'name' : found.name,
 		  'price' : found.price,
 		  'addText'  : "",
-		  'group' : 0
+		  'group' : 1
 		}
 		/*
 		Hier das neue Element zur Orderlist hinzufügen.
@@ -93,10 +93,10 @@
 			orderList = [orderElement, ...orderList];
 		}else{
 			let exist = findElement(orderElement);
-			if(exist < 0){
+			if(exist < 0 ){
 				orderList = [orderElement, ...orderList];
 
-			}else{
+			}else if(orderList[exist].group === 1) {
 				orderList[exist].quantity++;
 			}
 
@@ -104,13 +104,14 @@
         console.log("addarticle orderList: ",orderList);
         orderListStore.set(orderList)
 	}
-	function findElement(nElement){
+	function findElement(oElement){
         var ex = -1;
         orderList.forEach((element,i) =>{
-            if(nElement.id === element.id){
+            if(oElement.id === element.id && element.group === 1){
                 ex =  i;
             }
-        });
+		});
+		console.log("findElement: " , ex);
         return ex;
     } 
 </script>

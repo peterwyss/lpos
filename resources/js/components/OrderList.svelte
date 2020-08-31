@@ -10,6 +10,8 @@
   //let invoiceId = 0;
   let orderList = [];
   let elementToEdit = {};
+  let elementIndex = 0;
+  let elementQuantity = 0;
   let addText = "";
   const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;
@@ -84,13 +86,38 @@ function deleteElement(i){
 }
 function editElement(index) {
   console.log("index: ",index, " orderlist.element ", orderList[index]);
+  elementIndex = index;
   elementToEdit = orderList[index];
   showModal = true;
   
 }
 function handleChange(e){
   console.log(e.target.value);
+  elementQuantity = e.target.value;
 }
+function handleChangeText(e) {
+  console.log(e.target.value);
+  orderList[elementIndex].addText = e.target.value;  //erzeugt Fehler, alle Element erhalten den Text. Es sollte aber nur die gewählte Anzahl sein
+} 
+
+function saveChange() {
+      orderList[elementIndex].quantity = orderList[elementIndex].quantity - elementQuantity;
+      let el = orderList[elementIndex];
+  		let orderElement = {
+		  'quantity' : el.quantity,
+		  'id' : el.id,
+		  'plu' : el.plu,
+		  'name' : el.name,
+		  'price' : el.price,
+		  'addText'  : el.addText,
+		  'group' : 0
+		}
+    orderList = [...orderList,orderElement];
+    console.log("save: ", orderList);
+    orderListStore.set(orderList)
+
+}
+
 </script>
 
 <ul class="list-group">
@@ -106,9 +133,7 @@ function handleChange(e){
     </li>
   {/each}
 </ul>
-<button on:click="{() => showModal = true}">
-	show modal
-</button>
+
 {#if showModal}
 	<Modal on:close="{() => showModal = false}">
 		<h2 slot="header">
@@ -116,8 +141,8 @@ function handleChange(e){
 		</h2>
     <p>{addText}</p>
   <input type="number" value="{elementToEdit.quantity}" on:change="{handleChange}" max="{elementToEdit.quantity}"/>
-  <input type="text" on:change="{handleChange}" bind:value={addText}/>
-		
+  <input type="text" on:change="{handleChangeText}" bind:value={addText}/>
+	<input type="button" on:click={saveChange} value="Speichern" />	
 
 	</Modal>
 {/if}
