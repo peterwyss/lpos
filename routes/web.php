@@ -34,7 +34,7 @@ Route::post('/articleButton/store', 'ArticleButtonController@store');
 Route::get('articleButton/index', 'ArticleButtonController@index');
 
 Route::get('articleLevel/index', 'ArticleLevelController@index');
-Route::get('articleLevel/store', 'ArticleLevelController@store');
+Route::post('articleLevel/store', 'ArticleLevelController@store');
 
 Route::post('/article/store', 'ArticleController@store');
 Route::get('/article/index', 'ArticleController@index');

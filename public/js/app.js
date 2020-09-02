@@ -39045,14 +39045,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[12] = list[i];
+	child_ctx[13] = list[i];
 	return child_ctx;
 }
 
-// (130:5) {#each articleLevelData as level}
+// (133:5) {#each articleLevelData as level}
 function create_each_block(ctx) {
 	let button;
-	let t_value = /*level*/ ctx[12].name + "";
+	let t_value = /*level*/ ctx[13].name + "";
 	let t;
 	let dispose;
 
@@ -39069,12 +39069,12 @@ function create_each_block(ctx) {
 			if (remount) dispose();
 
 			dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(button, "click", function () {
-				if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*filter*/ ctx[4](/*level*/ ctx[12].id))) /*filter*/ ctx[4](/*level*/ ctx[12].id).apply(this, arguments);
+				if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*filter*/ ctx[4](/*level*/ ctx[13].id))) /*filter*/ ctx[4](/*level*/ ctx[13].id).apply(this, arguments);
 			});
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
-			if (dirty & /*articleLevelData*/ 1 && t_value !== (t_value = /*level*/ ctx[12].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t, t_value);
+			if (dirty & /*articleLevelData*/ 1 && t_value !== (t_value = /*level*/ ctx[13].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t, t_value);
 		},
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(button);
@@ -39345,6 +39345,10 @@ sonst neues Element
 
 		console.log("findElement: ", ex);
 		return ex;
+	}
+
+	function setLevel(level) {
+		articleLevel = level;
 	}
 
 	return [

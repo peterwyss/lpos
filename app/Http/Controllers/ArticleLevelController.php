@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ArticelLevel;
+use App\ArticleLevel;
 use Illuminate\Http\Request;
 
 class ArticleLevelController extends Controller
@@ -14,7 +14,7 @@ class ArticleLevelController extends Controller
      */
     public function index()
     {
-        $articleLevelList = ArticelLevel::all();
+        $articleLevelList = ArticleLevel::all();
         return response()->json(["articleLevelList" => $articleLevelList]);
        
     }
@@ -37,16 +37,27 @@ class ArticleLevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articleLevel = new ArticleLevel();
+        $articleLevel->id = request('id');
+        $articleLevel->name = request('name');
+        $articleLevel->save();
+        $articleLevelList = ArticleLevel::all();
+
+        return response()->json([
+            'message' => 'Gespeichert!',
+            'articleLevelList' => $articleLevelList
+        ],200);
+
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ArticelLevel  $articelLevel
+     * @param  \App\ArticleLevel  $ArticleLevel
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticelLevel $articelLevel)
+    public function show(ArticleLevel $ArticleLevel)
     {
         //
     }
@@ -54,10 +65,10 @@ class ArticleLevelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ArticelLevel  $articelLevel
+     * @param  \App\ArticleLevel  $ArticleLevel
      * @return \Illuminate\Http\Response
      */
-    public function edit(ArticelLevel $articelLevel)
+    public function edit(ArticleLevel $ArticleLevel)
     {
         //
     }
@@ -66,10 +77,10 @@ class ArticleLevelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ArticelLevel  $articelLevel
+     * @param  \App\ArticleLevel  $ArticleLevel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArticelLevel $articelLevel)
+    public function update(Request $request, ArticleLevel $ArticleLevel)
     {
         //
     }
@@ -77,10 +88,10 @@ class ArticleLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ArticelLevel  $articelLevel
+     * @param  \App\ArticleLevel  $ArticleLevel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticelLevel $articelLevel)
+    public function destroy(ArticleLevel $ArticleLevel)
     {
         //
     }

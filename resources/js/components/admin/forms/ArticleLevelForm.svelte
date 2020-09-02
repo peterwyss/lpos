@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { articleLevelList } from "./../../stores.js";
 
-	var article = [];
+	var level = [];
 	var res = "";
 	var allLevels = [];
 	var formMessage = "";
@@ -15,7 +15,7 @@
 	  console.log("the component has mounted");
 	});
 
-async function saveArticle(level){
+async function saveLevel(level){
     console.log(level);
 		const response = await axios(
 		{
@@ -27,8 +27,8 @@ async function saveArticle(level){
 			//	'X-CSRF-TOKEN': _TOKEN
 			//},
 			params: {
-                'id' : article.name,
-				'name' :  article.plu,
+                'id' : level.name,
+				'name' :  level.plu,
 
 			}
 		});
@@ -38,12 +38,12 @@ async function saveArticle(level){
 
 }
 
-function pluChange(e){
+function levelChange(e){
 	console.log(e.target.value);
-	console.log(allArticle);
-	const existPlu = allArticle.find(element => element.plu == e.target.value)
-	console.log(existPlu);
-	if(existPlu != undefined){
+	console.log(allLevels);
+	const exist = allLevels.find(element => element.id == e.target.value)
+	console.log(exist);
+	if(exist != undefined){
 		formMessage = "Diese Nummer wird bereits verwendet!"
 	}else{
 		formMessage = " "
@@ -61,38 +61,16 @@ function pluChange(e){
 					<div class="card-body">
 					<div>{res}</div>
 					    <div class="form-group">
-                            <label for="">Name:</label>
-                            <input name='name' type='text' class='form-control' id='name' bind:value="{article.name}"  >
+                            <label for="">ID:</label>
+                            <input name='name' type='number' class='form-control' id='name' bind:value="{level.name}" on:change="{(e) => levelChange(e)}"  >
                         </div>	
 						<div class="form-group">
-                            <label for="">PLU:</label>
-                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{article.plu}" on:change="{(e) => pluChange(e)}">
+                            <label for="">Name:</label>
+                            <input name='PLU' type='text' class='form-control' id='PLU' bind:value="{level.plu}" >
 							<p>{formMessage}</p>
                         </div>	
-						<div class="form-group">
-                            <label for="">Kategorie:</label>
-                            <input name='category' type='text' class='form-control' id='category' bind:value="{article.category}">
-                        </div>
-							
-						<div class="form-group">
-                            <label for="">Verkaufspreis:</label>
-                            <input name='price' type='number' step='0.05' class='form-control' id='price' bind:value="{article.price}">
-                        </div>
-							
-						<div class="form-group">
-                            <label for="">Einkaufspreis:</label>
-                            <input name='purchasePrice' type='number' step='0.01' class='form-control' id='purchasePrice' bind:value="{article.purchasePrice}">
-                        </div>
-							
-						<div class="form-group">
-                            <label for="">Bestand:</label>
-                            <input name='stock' type='number' class='form-control' id='stock' bind:value="{article.stock}">
-                        </div>
-						<div class="form-group">
-                            <label for="">Printer:</label>
-                            <input name='printer' type='number' class='form-control' id='stock' bind:value="{article.printer}">
-                        </div>
-							<input type="button"  on:click|preventDefault="{() => saveArticle(article)}" value="Save" />
+						
+							<input type="button"  on:click|preventDefault="{() => saveLevel(level)}" value="Save" />
 						
 					</div>
 				</div>

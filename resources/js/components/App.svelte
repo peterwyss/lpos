@@ -114,7 +114,10 @@
 		});
 		console.log("findElement: " , ex);
         return ex;
-    } 
+	} 
+function setLevel(level){
+	articleLevel = level;
+}	
 </script>
 
 <main>

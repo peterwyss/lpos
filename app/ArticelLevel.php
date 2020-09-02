@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArticelLevel extends Model
+class ArticleLevel extends Model
 {
     protected $table = 'articlelevel';
-    protected $fillable = ['name'];
+    protected $fillable = ["id", 'name'];
 }
