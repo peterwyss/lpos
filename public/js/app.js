@@ -39049,7 +39049,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (133:5) {#each articleLevelData as level}
+// (134:5) {#each articleLevelData as level}
 function create_each_block(ctx) {
 	let button;
 	let t_value = /*level*/ ctx[13].name + "";
