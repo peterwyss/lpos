@@ -41,3 +41,4 @@ Route::get('/article/index', 'ArticleController@index');
 
 Route::post('/invoice/store', 'InvoiceController@store');
 
+Route::post('/journal/store', 'JournalController@store');
