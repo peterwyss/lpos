@@ -4,8 +4,10 @@ import { totalStore } from './stores.js';
 import { lastTotalStore } from './stores.js'; 
 import { getNewInvoice } from './handler.js';
 import { saveJournal } from './handler.js';
+import Modal from './Modal.svelte';
 
 import { onMount } from "svelte";
+//import Error from './Error.svelte';
 
 export let articleList;
 
@@ -16,6 +18,7 @@ let total = 0;
 let lastTotal = 0;
 let invoice = [];
 let response = "";
+let showModal = false;
 
 export let invoiceId = 0;
 
@@ -36,10 +39,20 @@ const unsubscribelasttotal = lastTotalStore.subscribe(value => {
 
 async function getInvoiceNumber(){
     invoiceId =   await getNewInvoice();
-    console.log("invoiceId handleClick: ",invoiceId)
+    console.log("invoiceId handleClick: ",invoiceId,"showModal: ", showModal);
+       if( invoiceId < 0){
+          showModal = true;
+   }
 }
 
+
  function handleClick(){
+   if(getInvoiceNumber < 0){
+      getInvoiceNumber();
+   } 
+   if(orderList.length == 0){
+      console.log("leer");
+   }else{ 
    invoice = [];
     orderList.forEach(item => {
        console.log(item)
@@ -50,6 +63,7 @@ async function getInvoiceNumber(){
        console.log(invoice);
        
        response = saveJournal(invoiceItem, invoiceId);
+       console.log("response after saveJournal:" ,response);
 
 
        });
@@ -61,8 +75,17 @@ async function getInvoiceNumber(){
     console.log("lastTotal: ",lastTotal);
     lastTotalStore.set(lastTotal);
     getInvoiceNumber();
+   }
 }  
 </script>
 
 
 <input type="button" on:click={handleClick} value="Enter" />
+{#if showModal}
+
+	<Modal on:close="{() => showModal = false}">
+		<h2 slot="header">  Error		</h2>
+
+
+	</Modal>
+{/if}

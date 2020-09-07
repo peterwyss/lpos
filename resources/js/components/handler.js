@@ -1,4 +1,6 @@
 export async function getNewInvoice(){
+  console.log("function")
+  try{
 		const response = await axios(
 		{
 			url: "/invoice/store",
@@ -17,7 +19,11 @@ export async function getNewInvoice(){
 		console.log("Response: ",response);
         let res = response.data.message;
         return  response.data.invoiceId;
-
+  }catch(e){
+    console.log("error:" ,e);
+    console.log("++++++++++++");
+    return -1;
+  }
 }
 export async function saveJournal(item,invoiceId){
     console.log("invoiceId saveJournal",invoiceId);
@@ -42,10 +48,11 @@ export async function saveJournal(item,invoiceId){
         }
       });
     
-    console.log("Response: ",response);
+    console.log("Response saveJournal: ",response);
     return [response.data.journalId] 
     } catch(e){
         console.log("error:" ,e);
-        return e;
+        console.log("-----------");
+        return -1;
     }
 }

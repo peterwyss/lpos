@@ -42,11 +42,18 @@ class JournalController extends Controller
         $journal->plu = request('plu');
         $journal->category = request('category');
         $journal->price = request('price');
-        $journal->save();
-        return response()->json([
-            'message' => 'Journal saved',
-            'journalId' => $journal->id
-        ],200);
+        try{
+            $journal->save();
+            return response()->json([
+                'message' => 'Journal saved',
+                'journalId' => $journal->id
+            ],200);
+        }catch(\Exception $e){
+            return response()->json([
+                'message' => 'Error',
+                'journalId' => -1
+            ],200);
+        }
     }
 
     /**
