@@ -18,11 +18,15 @@
     var articles = [];
 	var orderList = [];
 	let orderElement = {};
+	let articleList = {};
 
 
   const unsubscribe = orderListStore.subscribe(value => {
 	orderList = value;
   });
+  const unsubscribeArticleList = articleListStore.subscribe(value =>{
+	  articleList = value;
+  })
 
 
 
@@ -127,7 +131,7 @@ function setLevel(level){
 			<div class="col-md-8">
 				<div class="card" >
 					<Display  {orderElement}/>
-					<ControlButtons/>
+					<ControlButtons {articleList} bind:invoiceId = {invoiceId}/>
 					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
 
