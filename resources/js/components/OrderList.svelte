@@ -2,8 +2,8 @@
   import { articleListStore } from './stores.js';
   import { orderListStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
-  import { testFunc } from './ArticleButtons.svelte';
-	import Modal from './Modal.svelte';
+
+import Modal from './Modal.svelte';
 
   	let showModal = false;
 
