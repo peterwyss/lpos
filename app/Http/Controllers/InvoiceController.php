@@ -39,6 +39,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
         $invoice->status = request('status');
         $invoice->sum = request('sum');
+        $invoice->period = 0;
         $invoice->save();
         Log::debug($invoice); 
         return response()->json([
@@ -77,9 +78,14 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request)
     {
         //
+        $post = Invoice::findOrFail($request->id);
+        $post->status = $request->status;
+        $post->sum = $request->sum;
+        $post->update($request->all());
+        return response()->json($post);
     }
 
     /**
