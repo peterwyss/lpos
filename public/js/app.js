@@ -41260,9 +41260,9 @@ var file = "resources/js/components/ArticleButtons.svelte";
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[8] = list[i];
+  child_ctx[7] = list[i];
   return child_ctx;
-} // (26:0) {#each filteredArticleList as button}
+} // (25:0) {#each filteredArticleList as button}
 
 
 function create_each_block(ctx) {
@@ -41282,7 +41282,7 @@ function create_each_block(ctx) {
       /*click_handler*/
       (_ctx = ctx)[3].apply(_ctx, [
       /*button*/
-      ctx[8]].concat(args))
+      ctx[7]].concat(args))
     );
   }
 
@@ -41292,8 +41292,8 @@ function create_each_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input, "type", "button");
       input.value = input_value_value =
       /*button*/
-      ctx[8].name;
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input, file, 26, 4, 453);
+      ctx[7].name;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input, file, 25, 4, 439);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, input, anchor);
@@ -41310,7 +41310,7 @@ function create_each_block(ctx) {
       /*filteredArticleList*/
       1 && input_value_value !== (input_value_value =
       /*button*/
-      ctx[8].name)) {
+      ctx[7].name)) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["prop_dev"])(input, "value", input_value_value);
       }
     },
@@ -41324,7 +41324,7 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(26:0) {#each filteredArticleList as button}",
+    source: "(25:0) {#each filteredArticleList as button}",
     ctx: ctx
   });
   return block;
@@ -41418,7 +41418,6 @@ function instance($$self, $$props, $$invalidate) {
   var _$$props$orderList = $$props.orderList,
       orderList = _$$props$orderList === void 0 ? [] : _$$props$orderList;
   var articleList = [];
-  var TEST = 0;
   var unsubscribe = _stores__WEBPACK_IMPORTED_MODULE_1__["articleListStore"].subscribe(function (value) {
     articleList = value;
   });
@@ -41452,7 +41451,6 @@ function instance($$self, $$props, $$invalidate) {
       addArticle: addArticle,
       orderList: orderList,
       articleList: articleList,
-      TEST: TEST,
       unsubscribe: unsubscribe,
       unsubscribeOrderlist: unsubscribeOrderlist
     };
@@ -41463,7 +41461,6 @@ function instance($$self, $$props, $$invalidate) {
     if ("addArticle" in $$props) $$invalidate(1, addArticle = $$props.addArticle);
     if ("orderList" in $$props) $$invalidate(2, orderList = $$props.orderList);
     if ("articleList" in $$props) articleList = $$props.articleList;
-    if ("TEST" in $$props) TEST = $$props.TEST;
   };
 
   if ($$props && "$$inject" in $$props) {
@@ -41612,7 +41609,7 @@ var console_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_1__["globals"].console;
 
 
 
-var file = "resources/js/components/ControlButtons.svelte"; // (84:0) {#if showModal}
+var file = "resources/js/components/ControlButtons.svelte"; // (100:0) {#if showModal}
 
 function create_if_block(ctx) {
   var modal;
@@ -41630,7 +41627,7 @@ function create_if_block(ctx) {
   });
   modal.$on("close",
   /*close_handler*/
-  ctx[4]);
+  ctx[5]);
   var block = {
     c: function create() {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["create_component"])(modal.$$.fragment);
@@ -41644,7 +41641,7 @@ function create_if_block(ctx) {
 
       if (dirty &
       /*$$scope*/
-      16384) {
+      65536) {
         modal_changes.$$scope = {
           dirty: dirty,
           ctx: ctx
@@ -41670,11 +41667,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(84:0) {#if showModal}",
+    source: "(100:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (87:2) <h2 slot="header">
+} // (103:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -41684,7 +41681,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("h2");
       h2.textContent = "Error";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 86, 2, 2054);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 102, 2, 2381);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, h2, anchor);
@@ -41697,15 +41694,17 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(87:2) <h2 slot=\\\"header\\\">",
+    source: "(103:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
 }
 
 function create_fragment(ctx) {
-  var input;
-  var t;
+  var input0;
+  var t0;
+  var input1;
+  var t1;
   var if_block_anchor;
   var current;
   var mounted;
@@ -41715,28 +41714,37 @@ function create_fragment(ctx) {
   ctx[0] && create_if_block(ctx);
   var block = {
     c: function create() {
-      input = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("input");
-      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      input0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("input");
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      input1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("input");
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       if (if_block) if_block.c();
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input, "type", "button");
-      input.value = "Enter";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input, file, 82, 0, 1928);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "button");
+      input0.value = "Enter";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 96, 0, 2178);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "button");
+      input1.value = "Close";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 97, 0, 2239);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, input, anchor);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, input0, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t0, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, input1, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t1, anchor);
       if (if_block) if_block.m(target, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, if_block_anchor, anchor);
       current = true;
 
       if (!mounted) {
-        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["listen_dev"])(input, "click",
+        dispose = [Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["listen_dev"])(input0, "click",
         /*handleClick*/
-        ctx[1], false, false, false);
+        ctx[1], false, false, false), Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["listen_dev"])(input1, "click",
+        /*click_handler*/
+        ctx[4], false, false, false)];
         mounted = true;
       }
     },
@@ -41779,12 +41787,14 @@ function create_fragment(ctx) {
       current = false;
     },
     d: function destroy(detaching) {
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(input);
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(input0);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t0);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(input1);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t1);
       if (if_block) if_block.d(detaching);
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(if_block_anchor);
       mounted = false;
-      dispose();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["run_all"])(dispose);
     }
   };
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["dispatch_dev"])("SvelteRegisterBlock", {
@@ -41839,43 +41849,18 @@ function instance($$self, $$props, $$invalidate) {
   });
 
   function getInvoiceNumber() {
-    return _getInvoiceNumber.apply(this, arguments);
+    console.log("function getInvoiceNumber");
+    return Object(_handler_js__WEBPACK_IMPORTED_MODULE_3__["getNewInvoice"])().then(function (res) {
+      $$invalidate(2, invoiceId = res);
+      console.log("invoiceId handleClick: ", invoiceId, "showModal: ", showModal);
+
+      if (invoiceId < 0) {
+        $$invalidate(0, showModal = true);
+      }
+    });
   }
 
-  function _getInvoiceNumber() {
-    _getInvoiceNumber = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.t0 = $$invalidate;
-              _context2.next = 3;
-              return Object(_handler_js__WEBPACK_IMPORTED_MODULE_3__["getNewInvoice"])();
-
-            case 3:
-              _context2.t1 = invoiceId = _context2.sent;
-              (0, _context2.t0)(2, _context2.t1);
-              console.log("invoiceId handleClick: ", invoiceId, "showModal: ", showModal);
-
-              if (invoiceId < 0) {
-                $$invalidate(0, showModal = true);
-              }
-
-            case 7:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _getInvoiceNumber.apply(this, arguments);
-  }
-
-  function handleClick() {
-    if (getInvoiceNumber < 0) {
-      getInvoiceNumber();
-    }
-
+  function saveData(dest) {
     if (orderList.length == 0) {
       console.log("leer");
     } else {
@@ -41898,7 +41883,18 @@ function instance($$self, $$props, $$invalidate) {
       console.log("Total: ", total);
       console.log("lastTotal: ", lastTotal);
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastTotalStore"].set(lastTotal);
+      Object(_handler_js__WEBPACK_IMPORTED_MODULE_3__["updateInvoice"])(invoiceId, total);
       getInvoiceNumber();
+    }
+  }
+
+  function handleClick(dest) {
+    if (invoiceId < 0) {
+      getInvoiceNumber().then(function () {
+        saveData(dest);
+      });
+    } else {
+      saveData(dest);
     }
   }
 
@@ -41910,6 +41906,10 @@ function instance($$self, $$props, $$invalidate) {
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_slots"])("ControlButtons", $$slots, []);
+
+  var click_handler = function click_handler() {
+    return handleClick("close");
+  };
 
   var close_handler = function close_handler() {
     return $$invalidate(0, showModal = false);
@@ -41927,6 +41927,7 @@ function instance($$self, $$props, $$invalidate) {
       lastTotalStore: _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastTotalStore"],
       getNewInvoice: _handler_js__WEBPACK_IMPORTED_MODULE_3__["getNewInvoice"],
       saveJournal: _handler_js__WEBPACK_IMPORTED_MODULE_3__["saveJournal"],
+      updateInvoice: _handler_js__WEBPACK_IMPORTED_MODULE_3__["updateInvoice"],
       Modal: _Modal_svelte__WEBPACK_IMPORTED_MODULE_4__["default"],
       onMount: svelte__WEBPACK_IMPORTED_MODULE_5__["onMount"],
       articleList: articleList,
@@ -41941,6 +41942,7 @@ function instance($$self, $$props, $$invalidate) {
       unsubscribetotal: unsubscribetotal,
       unsubscribelasttotal: unsubscribelasttotal,
       getInvoiceNumber: getInvoiceNumber,
+      saveData: saveData,
       handleClick: handleClick
     };
   };
@@ -41960,7 +41962,7 @@ function instance($$self, $$props, $$invalidate) {
     $$self.$inject_state($$props.$$inject);
   }
 
-  return [showModal, handleClick, invoiceId, articleList, close_handler];
+  return [showModal, handleClick, invoiceId, articleList, click_handler, close_handler];
 }
 
 var ControlButtons = /*#__PURE__*/function (_SvelteComponentDev) {
@@ -42732,7 +42734,7 @@ function get_each_context(ctx, list, i) {
   child_ctx[21] = list[i];
   child_ctx[23] = i;
   return child_ctx;
-} // (127:8) {#if element.addText != ""}
+} // (128:8) {#if element.addText != ""}
 
 
 function create_if_block_1(ctx) {
@@ -42762,11 +42764,11 @@ function create_if_block_1(ctx) {
     block: block,
     id: create_if_block_1.name,
     type: "if",
-    source: "(127:8) {#if element.addText != \\\"\\\"}",
+    source: "(128:8) {#if element.addText != \\\"\\\"}",
     ctx: ctx
   });
   return block;
-} // (124:2) {#each orderList as element,index}
+} // (125:2) {#each orderList as element,index}
 
 
 function create_each_block(ctx) {
@@ -42912,22 +42914,22 @@ function create_each_block(ctx) {
       button3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("button");
       button3.textContent = "Edit";
       t16 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(b, file, 125, 69, 2996);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(br, file, 125, 123, 3050);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(b, file, 126, 69, 2996);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(br, file, 126, 123, 3050);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button0, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button0, "class", "btn btn-info");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button0, file, 129, 8, 3140);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button0, file, 130, 8, 3140);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button1, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button1, "class", "btn btn-info");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button1, file, 130, 8, 3236);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button1, file, 131, 8, 3236);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button2, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button2, "class", "btn btn-info");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button2, file, 131, 8, 3332);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button2, file, 132, 8, 3332);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button3, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button3, "class", "btn btn-info");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button3, file, 132, 8, 3437);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button3, file, 133, 8, 3437);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(li, "class", "list-group-item");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(li, file, 124, 4, 2855);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(li, file, 125, 4, 2855);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, li, anchor);
@@ -43008,11 +43010,11 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(124:2) {#each orderList as element,index}",
+    source: "(125:2) {#each orderList as element,index}",
     ctx: ctx
   });
   return block;
-} // (140:0) {#if showModal}
+} // (141:0) {#if showModal}
 
 
 function create_if_block(ctx) {
@@ -43072,11 +43074,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(140:0) {#if showModal}",
+    source: "(141:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (142:2) <h2 slot="header">
+} // (143:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -43090,7 +43092,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h2");
       t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t_value);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h2, file, 141, 2, 3635);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h2, file, 142, 2, 3635);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, h2, anchor);
@@ -43111,11 +43113,11 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(142:2) <h2 slot=\\\"header\\\">",
+    source: "(143:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
-} // (141:1) <Modal on:close="{() => showModal = false}">
+} // (142:1) <Modal on:close="{() => showModal = false}">
 
 
 function create_default_slot(ctx) {
@@ -43144,17 +43146,17 @@ function create_default_slot(ctx) {
       input1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("input");
       t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       input2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("input");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(p, file, 144, 4, 3690);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(p, file, 145, 4, 3690);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input0, "type", "number");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input0, "max", input0_max_value =
       /*elementToEdit*/
       ctx[2].quantity);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input0, file, 145, 2, 3709);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input0, file, 146, 2, 3709);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input1, "type", "text");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input1, file, 146, 2, 3824);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input1, file, 147, 2, 3824);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input2, "type", "button");
       input2.value = "Speichern";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input2, file, 147, 1, 3898);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input2, file, 148, 1, 3898);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, t0, anchor);
@@ -43238,7 +43240,7 @@ function create_default_slot(ctx) {
     block: block,
     id: create_default_slot.name,
     type: "slot",
-    source: "(141:1) <Modal on:close=\\\"{() => showModal = false}\\\">",
+    source: "(142:1) <Modal on:close=\\\"{() => showModal = false}\\\">",
     ctx: ctx
   });
   return block;
@@ -43274,7 +43276,7 @@ function create_fragment(ctx) {
       if (if_block) if_block.c();
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["empty"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(ul, "class", "list-group");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(ul, file, 122, 0, 2790);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(ul, file, 123, 0, 2790);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -43573,12 +43575,13 @@ var OrderList = /*#__PURE__*/function (_SvelteComponentDev) {
 /*!********************************************!*\
   !*** ./resources/js/components/handler.js ***!
   \********************************************/
-/*! exports provided: getNewInvoice, saveJournal */
+/*! exports provided: getNewInvoice, updateInvoice, saveJournal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNewInvoice", function() { return getNewInvoice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateInvoice", function() { return updateInvoice; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveJournal", function() { return saveJournal; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -43594,65 +43597,81 @@ function getNewInvoice() {
 
 function _getNewInvoice() {
   _getNewInvoice = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var response, res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log("function");
-            _context.prev = 1;
-            _context.next = 4;
-            return axios({
-              url: "/invoice/store",
-              method: 'POST',
-              //headers: {
-              //	'Accept': 'application/json',
-              //	'Content-Type': 'application/json',
-              //	'X-CSRF-TOKEN': _TOKEN
-              //},
-              params: {
-                'status': 0,
-                'sum': 0
-              }
-            });
+            return _context.abrupt("return", axios.post("/invoice/store", {
+              'status': 0,
+              'sum': 0
+            }).then(function (response) {
+              console.log("getNewInvoice response:", response.data.invoiceId);
+              var res = response.data.message;
+              return response.data.invoiceId;
+            })["catch"](function (e) {
+              console.log("error:", e);
+              console.log("++++++++++++");
+              return -1;
+            }));
 
-          case 4:
-            response = _context.sent;
-            console.log("Response: ", response);
-            res = response.data.message;
-            return _context.abrupt("return", response.data.invoiceId);
-
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](1);
-            console.log("error:", _context.t0);
-            console.log("++++++++++++");
-            return _context.abrupt("return", -1);
-
-          case 15:
+          case 1:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee);
   }));
   return _getNewInvoice.apply(this, arguments);
 }
 
-function saveJournal(_x, _x2) {
-  return _saveJournal.apply(this, arguments);
+function updateInvoice(_x, _x2) {
+  return _updateInvoice.apply(this, arguments);
 }
 
-function _saveJournal() {
-  _saveJournal = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(item, invoiceId) {
-    var response;
+function _updateInvoice() {
+  _updateInvoice = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(number, total) {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            console.log("updateInvoice: ", number);
+            return _context2.abrupt("return", axios.post("/invoice/update", {
+              'id': number,
+              'status': 0,
+              'sum': total
+            }).then(function (response) {
+              console.log("updateInvoice response:", response);
+              return response;
+            })["catch"](function (e) {
+              console.log("error:", e);
+              console.log("++++++++++++");
+              return -1;
+            }));
+
+          case 2:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _updateInvoice.apply(this, arguments);
+}
+
+function saveJournal(_x3, _x4) {
+  return _saveJournal.apply(this, arguments);
+}
+
+function _saveJournal() {
+  _saveJournal = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(item, invoiceId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
             console.log("invoiceId saveJournal", invoiceId);
-            _context2.prev = 1;
-            _context2.next = 4;
+            _context3.prev = 1;
+            _context3.next = 4;
             return axios({
               url: "/journal/store",
               method: 'POST',
@@ -43672,23 +43691,25 @@ function _saveJournal() {
             });
 
           case 4:
-            response = _context2.sent;
+            response = _context3.sent;
             console.log("Response saveJournal: ", response);
-            return _context2.abrupt("return", [response.data.journalId]);
+            return _context3.abrupt("return", [response.data.journalId]);
 
           case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](1);
-            console.log("error:", _context2.t0);
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](1);
+            console.log("error:", _context3.t0);
+            console.log(_context3.t0);
             console.log("-----------");
-            return _context2.abrupt("return", -1);
+            location.reload();
+            return _context3.abrupt("return", -1);
 
-          case 14:
+          case 16:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2, null, [[1, 9]]);
+    }, _callee3, null, [[1, 9]]);
   }));
   return _saveJournal.apply(this, arguments);
 }

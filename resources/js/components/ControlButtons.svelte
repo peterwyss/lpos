@@ -3,7 +3,7 @@ import { orderListStore } from './stores.js';
 import { totalStore } from './stores.js'; 
 import { lastTotalStore } from './stores.js'; 
 import { getNewInvoice } from './handler.js';
-import { saveJournal } from './handler.js';
+import { saveJournal, updateInvoice } from './handler.js';
 import Modal from './Modal.svelte';
 
 import { onMount } from "svelte";
@@ -37,19 +37,20 @@ const unsubscribelasttotal = lastTotalStore.subscribe(value => {
    lastTotal = value;
 });
 
-async function getInvoiceNumber(){
-    invoiceId =   await getNewInvoice();
-    console.log("invoiceId handleClick: ",invoiceId,"showModal: ", showModal);
+function getInvoiceNumber(){
+   console.log("function getInvoiceNumber");
+    return getNewInvoice()
+    .then(res => {
+       invoiceId = res;
+       console.log("invoiceId handleClick: ",invoiceId,"showModal: ", showModal);
        if( invoiceId < 0){
           showModal = true;
-   }
+       }
+    })
+   
 }
 
-
- function handleClick(){
-   if(getInvoiceNumber < 0){
-      getInvoiceNumber();
-   } 
+function saveData(dest){
    if(orderList.length == 0){
       console.log("leer");
    }else{ 
@@ -74,13 +75,28 @@ async function getInvoiceNumber(){
 
     console.log("lastTotal: ",lastTotal);
     lastTotalStore.set(lastTotal);
+    updateInvoice(invoiceId, total); 
     getInvoiceNumber();
    }
+}
+
+ function handleClick(dest){
+   if(invoiceId < 0){
+      getInvoiceNumber()
+      .then(() => {
+         saveData(dest);
+      });
+   }else{
+      saveData(dest);
+   } 
+
 }  
 </script>
 
 
 <input type="button" on:click={handleClick} value="Enter" />
+<input type="button" on:click={() => handleClick("close")} value="Close" />
+
 {#if showModal}
 
 	<Modal on:close="{() => showModal = false}">
