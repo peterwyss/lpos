@@ -1,6 +1,6 @@
 <script>
   import { articleListStore } from './stores.js';
-  import { orderListStore } from './stores.js'; 
+  import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
 
 import Modal from './Modal.svelte';
@@ -9,46 +9,24 @@ import Modal from './Modal.svelte';
 
   //let invoiceId = 0;
   let orderList = [];
+  let lastOrderList = [];
   let elementToEdit = {};
   let elementIndex = 0;
   let elementQuantity = 0;
   let addText = "";
+  let posStatus = "";
+
   const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;
   });
   
- 
-/*
- $: {
-   console.log("reactive: ", orderList)
-   orderList = rawOrderList.slice();
-   let elem = orderList.slice(0,1);
-   console.log("elem: ",elem);
-   elem.quantity = 1;
-   console.log("elem: ",elem," orderList: ", orderList, "rawOrderList: ", rawOrderList);
-   sortedOrderList = sortOrderList(orderList);
-   console.log(sortedOrderList);
-
-   } 
-/*
-	async function newInvoice(){
-          const response = await axios({
-			    url: "/invoice/store",
-				method: 'POST',
-				params: {
-					'status' : 1,
-					'sum' : 0
-				}
-
-			});
-      invoiceId = response.data.invoiceId;	
-      console.log("invoiceId: ", invoiceId);
-
-  }
-*/
-
-
-
+  const unsubscribeLastOrderlist = lastOrderListStore.subscribe(value => {
+	lastOrderList = value;
+  });
+  
+const unsubscribePosStatus = posStatusStore.subscribe(value => {
+   posStatus = value;
+});
 
 
 
@@ -120,7 +98,7 @@ function saveChange() {
 }
 
 </script>
-
+<h1>{posStatus}</h1>
 <ul class="list-group">
   {#each orderList as element,index}
     <li class="list-group-item" on:dblclick={() => handleDblClick( index)}>
@@ -137,6 +115,14 @@ function saveChange() {
     </li>
   {/each}
 </ul>
+
+{#if posStatus == 'closed'}
+  {#each lastOrderList as element}
+
+  <p>{element.name}</p>
+    
+  {/each}
+{/if}
 
 {#if showModal}
 	<Modal on:close="{() => showModal = false}">

@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { articleButtonList } from './stores.js';
 	import { articleLevelList } from './stores.js';
-	import { articleListStore} from './stores.js';
+	import { articleListStore, posStatusStore} from './stores.js';
 	import {orderListStore}  from './stores.js';
  	import ArticleButtons from './ArticleButtons.svelte';
 	import OrderList from "./OrderList.svelte";
@@ -19,6 +19,7 @@
 	var orderList = [];
 	let orderElement = {};
 	let articleList = {};
+	let posStatus = "";
 
 
   const unsubscribe = orderListStore.subscribe(value => {
@@ -27,7 +28,9 @@
   const unsubscribeArticleList = articleListStore.subscribe(value =>{
 	  articleList = value;
   })
-
+const unsubscribePosStatus = posStatusStore.subscribe(value => {
+   posStatus = value;
+});
 
 
 	onMount(async () => {
@@ -75,7 +78,8 @@
 	}
 
 	function addArticle(id){
-    console.log(filteredArticleList);
+	console.log(filteredArticleList);
+	    posStatusStore.set("open");
 		const found = articles.find(element => element.id == id);
 		console.log("found: ", found);
 		console.log("found.id: ",found.id);

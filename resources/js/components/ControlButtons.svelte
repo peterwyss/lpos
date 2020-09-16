@@ -1,5 +1,5 @@
 <script>
-import { orderListStore } from './stores.js'; 
+import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
 import { totalStore } from './stores.js'; 
 import { lastTotalStore } from './stores.js'; 
 import { getNewInvoice } from './handler.js';
@@ -19,6 +19,8 @@ let lastTotal = 0;
 let invoice = [];
 let response = "";
 let showModal = false;
+let lastOrderList = [];
+let posStatus = ""; //closed
 
 export let invoiceId = 0;
 
@@ -36,7 +38,12 @@ const unsubscribetotal = totalStore.subscribe(value => {
 const unsubscribelasttotal = lastTotalStore.subscribe(value => {
    lastTotal = value;
 });
-
+const unsubscribelastorderlist = lastOrderListStore.subscribe(value => {
+   lastOrderList = value;
+});
+const unsubscribePosStatus = posStatusStore.subscribe(value => {
+   posStatus = value;
+});
 function getInvoiceNumber(){
    console.log("function getInvoiceNumber");
     return getNewInvoice()
@@ -68,7 +75,9 @@ function saveData(dest){
 
 
        });
+    lastOrderListStore.set(orderList);   
     orderList = [];
+    posStatusStore.set("closed");
     orderListStore.set(orderList);
     lastTotal = total;
     console.log("Total: ",total);

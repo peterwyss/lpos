@@ -43189,7 +43189,7 @@ var EditArticleButton = /*#__PURE__*/function (_SvelteComponentDev) {
 /*!*******************************************!*\
   !*** ./resources/js/components/stores.js ***!
   \*******************************************/
-/*! exports provided: articleButtonList, articleLevelList, articleListStore, orderListStore, totalStore, lastTotalStore */
+/*! exports provided: articleButtonList, articleLevelList, articleListStore, orderListStore, lastOrderListStore, totalStore, lastTotalStore, posStatusStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43198,16 +43198,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "articleLevelList", function() { return articleLevelList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "articleListStore", function() { return articleListStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "orderListStore", function() { return orderListStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lastOrderListStore", function() { return lastOrderListStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "totalStore", function() { return totalStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lastTotalStore", function() { return lastTotalStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "posStatusStore", function() { return posStatusStore; });
 /* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/svelte/store/index.mjs");
 
 var articleButtonList = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([]);
 var articleLevelList = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([]);
 var articleListStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([]);
 var orderListStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([]);
+var lastOrderListStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([]);
 var totalStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])(0);
 var lastTotalStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])(0);
+var posStatusStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])('');
 
 /***/ }),
 
