@@ -40632,7 +40632,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[19] = list[i];
   return child_ctx;
-} // (142:5) {#each articleLevelData as level}
+} // (143:5) {#each articleLevelData as level}
 
 
 function create_each_block(ctx) {
@@ -40649,7 +40649,7 @@ function create_each_block(ctx) {
       t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t_value);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "class", "btn btn-primary");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 142, 7, 3981);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 143, 7, 4069);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, button, anchor);
@@ -40688,7 +40688,7 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(142:5) {#each articleLevelData as level}",
+    source: "(143:5) {#each articleLevelData as level}",
     ctx: ctx
   });
   return block;
@@ -40710,11 +40710,15 @@ function create_fragment(ctx) {
   var t3;
   var t4;
   var div1;
-  var t5;
-  var articlebuttons;
+  var button;
   var t6;
+  var t7;
+  var articlebuttons;
+  var t8;
   var orderlist;
   var current;
+  var mounted;
+  var dispose;
   display = new _Display_svelte__WEBPACK_IMPORTED_MODULE_6__["default"]({
     props: {
       orderElement:
@@ -40726,7 +40730,7 @@ function create_fragment(ctx) {
 
   function controlbuttons_invoiceId_binding(value) {
     /*controlbuttons_invoiceId_binding*/
-    ctx[9].call(null, value);
+    ctx[10].call(null, value);
   }
 
   var controlbuttons_props = {
@@ -40800,17 +40804,23 @@ function create_fragment(ctx) {
       ctx[2]);
       t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
+      button = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("button");
+      button.textContent = "Offen";
+      t6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
 
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
       }
 
-      t5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t7 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["create_component"])(articlebuttons.$$.fragment);
-      t6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t8 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["create_component"])(orderlist.$$.fragment);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div0, "class", "card-header");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 138, 5, 3847);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "type", "button");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "class", "btn btn-primary");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 140, 5, 3939);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div1, "class", "card-body");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 139, 5, 3910);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div2, "class", "card");
@@ -40841,16 +40851,25 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div0, t3);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, t4);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, div1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, button);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, t6);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
         each_blocks[_i2].m(div1, null);
       }
 
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, t5);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, t7);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["mount_component"])(articlebuttons, div1, null);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, t6);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, t8);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["mount_component"])(orderlist, div1, null);
       current = true;
+
+      if (!mounted) {
+        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["listen_dev"])(button, "click",
+        /*setLevel*/
+        ctx[9], false, false, false);
+        mounted = true;
+      }
     },
     p: function update(ctx, _ref) {
       var _ref2 = _slicedToArray(_ref, 1),
@@ -40909,7 +40928,7 @@ function create_fragment(ctx) {
 
             each_blocks[_i3].c();
 
-            each_blocks[_i3].m(div1, t5);
+            each_blocks[_i3].m(div1, t7);
           }
         }
 
@@ -40957,6 +40976,8 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_each"])(each_blocks, detaching);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_component"])(articlebuttons);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_component"])(orderlist);
+      mounted = false;
+      dispose();
     }
   };
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["dispatch_dev"])("SvelteRegisterBlock", {
@@ -41185,7 +41206,7 @@ function instance($$self, $$props, $$invalidate) {
     $$self.$inject_state($$props.$$inject);
   }
 
-  return [articleLevelData, filteredArticleList, invoiceId, orderList, orderElement, articleList, filter, testFunc, addArticle, controlbuttons_invoiceId_binding];
+  return [articleLevelData, filteredArticleList, invoiceId, orderList, orderElement, articleList, filter, testFunc, addArticle, setLevel, controlbuttons_invoiceId_binding];
 }
 
 var App = /*#__PURE__*/function (_SvelteComponentDev) {
@@ -42423,7 +42444,7 @@ var file = "resources/js/components/Modal.svelte";
 function add_css() {
   var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
   style.id = "svelte-17ihrzc-style";
-  style.textContent = ".modal-background.svelte-17ihrzc{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3)}.newmodal.svelte-17ihrzc{position:absolute;left:50%;top:50%;width:calc(100vw - 4em);max-width:32em;max-height:calc(100vh - 4em);overflow:auto;transform:translate(-50%,-50%);padding:1em;border-radius:0.2em;background:white}button.svelte-17ihrzc{display:block}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTW9kYWwuc3ZlbHRlIiwic291cmNlcyI6WyJNb2RhbC5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHNjcmlwdD5cblx0aW1wb3J0IHsgY3JlYXRlRXZlbnREaXNwYXRjaGVyLCBvbkRlc3Ryb3kgfSBmcm9tICdzdmVsdGUnO1xuXG5cdGNvbnN0IGRpc3BhdGNoID0gY3JlYXRlRXZlbnREaXNwYXRjaGVyKCk7XG5cdGNvbnN0IGNsb3NlID0gKCkgPT4gZGlzcGF0Y2goJ2Nsb3NlJyk7XG5cblx0bGV0IG1vZGFsO1xuXG5cdGNvbnN0IGhhbmRsZV9rZXlkb3duID0gZSA9PiB7XG5cdFx0aWYgKGUua2V5ID09PSAnRXNjYXBlJykge1xuXHRcdFx0Y2xvc2UoKTtcblx0XHRcdHJldHVybjtcblx0XHR9XG5cblx0XHRpZiAoZS5rZXkgPT09ICdUYWInKSB7XG5cdFx0XHQvLyB0cmFwIGZvY3VzXG5cdFx0XHRjb25zdCBub2RlcyA9IG1vZGFsLnF1ZXJ5U2VsZWN0b3JBbGwoJyonKTtcblx0XHRcdGNvbnN0IHRhYmJhYmxlID0gQXJyYXkuZnJvbShub2RlcykuZmlsdGVyKG4gPT4gbi50YWJJbmRleCA+PSAwKTtcblxuXHRcdFx0bGV0IGluZGV4ID0gdGFiYmFibGUuaW5kZXhPZihkb2N1bWVudC5hY3RpdmVFbGVtZW50KTtcblx0XHRcdGlmIChpbmRleCA9PT0gLTEgJiYgZS5zaGlmdEtleSkgaW5kZXggPSAwO1xuXG5cdFx0XHRpbmRleCArPSB0YWJiYWJsZS5sZW5ndGggKyAoZS5zaGlmdEtleSA/IC0xIDogMSk7XG5cdFx0XHRpbmRleCAlPSB0YWJiYWJsZS5sZW5ndGg7XG5cblx0XHRcdHRhYmJhYmxlW2luZGV4XS5mb2N1cygpO1xuXHRcdFx0ZS5wcmV2ZW50RGVmYXVsdCgpO1xuXHRcdH1cblx0fTtcblxuXHRjb25zdCBwcmV2aW91c2x5X2ZvY3VzZWQgPSB0eXBlb2YgZG9jdW1lbnQgIT09ICd1bmRlZmluZWQnICYmIGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQ7XG5cblx0aWYgKHByZXZpb3VzbHlfZm9jdXNlZCkge1xuXHRcdG9uRGVzdHJveSgoKSA9PiB7XG5cdFx0XHRwcmV2aW91c2x5X2ZvY3VzZWQuZm9jdXMoKTtcblx0XHR9KTtcblx0fVxuPC9zY3JpcHQ+XG5cbjxzdmVsdGU6d2luZG93IG9uOmtleWRvd249e2hhbmRsZV9rZXlkb3dufS8+XG5cbjxkaXYgY2xhc3M9XCJtb2RhbC1iYWNrZ3JvdW5kXCIgb246Y2xpY2s9e2Nsb3NlfT48L2Rpdj5cblxuPGRpdiBjbGFzcz1cIm5ld21vZGFsXCIgcm9sZT1cImRpYWxvZ1wiIGFyaWEtbW9kYWw9XCJ0cnVlXCIgYmluZDp0aGlzPXttb2RhbH0+XG5cblx0PHNsb3QgbmFtZT1cImhlYWRlclwiPjwvc2xvdD5cblx0PGhyPlxuXHQ8c2xvdD48L3Nsb3Q+XG5cdDxocj5cblxuXHQ8IS0tIHN2ZWx0ZS1pZ25vcmUgYTExeS1hdXRvZm9jdXMgLS0+XG5cdDxidXR0b24gYXV0b2ZvY3VzIG9uOmNsaWNrPXtjbG9zZX0+U2NobGllc3NlbjwvYnV0dG9uPlxuPC9kaXY+XG5cbjxzdHlsZT5cblx0Lm1vZGFsLWJhY2tncm91bmQge1xuXHRcdHBvc2l0aW9uOiBmaXhlZDtcblx0XHR0b3A6IDA7XG5cdFx0bGVmdDogMDtcblx0XHR3aWR0aDogMTAwJTtcblx0XHRoZWlnaHQ6IDEwMCU7XG5cdFx0YmFja2dyb3VuZDogcmdiYSgwLDAsMCwwLjMpO1xuXHR9XG5cblx0Lm5ld21vZGFsIHtcblx0XHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdFx0bGVmdDogNTAlO1xuXHRcdHRvcDogNTAlO1xuXHRcdHdpZHRoOiBjYWxjKDEwMHZ3IC0gNGVtKTtcblx0XHRtYXgtd2lkdGg6IDMyZW07XG5cdFx0bWF4LWhlaWdodDogY2FsYygxMDB2aCAtIDRlbSk7XG5cdFx0b3ZlcmZsb3c6IGF1dG87XG5cdFx0dHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwtNTAlKTtcblx0XHRwYWRkaW5nOiAxZW07XG5cdFx0Ym9yZGVyLXJhZGl1czogMC4yZW07XG5cdFx0YmFja2dyb3VuZDogd2hpdGU7XG5cdH1cblxuXHRidXR0b24ge1xuXHRcdGRpc3BsYXk6IGJsb2NrO1xuXHR9XG48L3N0eWxlPlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVEQyxpQkFBaUIsZUFBQyxDQUFDLEFBQ2xCLFFBQVEsQ0FBRSxLQUFLLENBQ2YsR0FBRyxDQUFFLENBQUMsQ0FDTixJQUFJLENBQUUsQ0FBQyxDQUNQLEtBQUssQ0FBRSxJQUFJLENBQ1gsTUFBTSxDQUFFLElBQUksQ0FDWixVQUFVLENBQUUsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQUFDNUIsQ0FBQyxBQUVELFNBQVMsZUFBQyxDQUFDLEFBQ1YsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsSUFBSSxDQUFFLEdBQUcsQ0FDVCxHQUFHLENBQUUsR0FBRyxDQUNSLEtBQUssQ0FBRSxLQUFLLEtBQUssQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQ3hCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsVUFBVSxDQUFFLEtBQUssS0FBSyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FDN0IsUUFBUSxDQUFFLElBQUksQ0FDZCxTQUFTLENBQUUsVUFBVSxJQUFJLENBQUMsSUFBSSxDQUFDLENBQy9CLE9BQU8sQ0FBRSxHQUFHLENBQ1osYUFBYSxDQUFFLEtBQUssQ0FDcEIsVUFBVSxDQUFFLEtBQUssQUFDbEIsQ0FBQyxBQUVELE1BQU0sZUFBQyxDQUFDLEFBQ1AsT0FBTyxDQUFFLEtBQUssQUFDZixDQUFDIn0= */";
+  style.textContent = ".modal-background.svelte-17ihrzc{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3)}.newmodal.svelte-17ihrzc{position:absolute;left:50%;top:50%;width:calc(100vw - 4em);max-width:32em;max-height:calc(100vh - 4em);overflow:auto;transform:translate(-50%,-50%);padding:1em;border-radius:0.2em;background:white}button.svelte-17ihrzc{display:block}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTW9kYWwuc3ZlbHRlIiwic291cmNlcyI6WyJNb2RhbC5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHNjcmlwdD5cblx0aW1wb3J0IHsgY3JlYXRlRXZlbnREaXNwYXRjaGVyLCBvbkRlc3Ryb3kgfSBmcm9tICdzdmVsdGUnO1xuXG5cdGNvbnN0IGRpc3BhdGNoID0gY3JlYXRlRXZlbnREaXNwYXRjaGVyKCk7XG5cdGNvbnN0IGNsb3NlID0gKCkgPT4gZGlzcGF0Y2goJ2Nsb3NlJyk7XG5cblx0bGV0IG1vZGFsO1xuXG5cdGNvbnN0IGhhbmRsZV9rZXlkb3duID0gZSA9PiB7XG5cdFx0aWYgKGUua2V5ID09PSAnRXNjYXBlJykge1xuXHRcdFx0Y2xvc2UoKTtcblx0XHRcdHJldHVybjtcblx0XHR9XG5cblx0XHRpZiAoZS5rZXkgPT09ICdUYWInKSB7XG5cdFx0XHQvLyB0cmFwIGZvY3VzXG5cdFx0XHRjb25zdCBub2RlcyA9IG1vZGFsLnF1ZXJ5U2VsZWN0b3JBbGwoJyonKTtcblx0XHRcdGNvbnN0IHRhYmJhYmxlID0gQXJyYXkuZnJvbShub2RlcykuZmlsdGVyKG4gPT4gbi50YWJJbmRleCA+PSAwKTtcblxuXHRcdFx0bGV0IGluZGV4ID0gdGFiYmFibGUuaW5kZXhPZihkb2N1bWVudC5hY3RpdmVFbGVtZW50KTtcblx0XHRcdGlmIChpbmRleCA9PT0gLTEgJiYgZS5zaGlmdEtleSkgaW5kZXggPSAwO1xuXG5cdFx0XHRpbmRleCArPSB0YWJiYWJsZS5sZW5ndGggKyAoZS5zaGlmdEtleSA/IC0xIDogMSk7XG5cdFx0XHRpbmRleCAlPSB0YWJiYWJsZS5sZW5ndGg7XG5cblx0XHRcdHRhYmJhYmxlW2luZGV4XS5mb2N1cygpO1xuXHRcdFx0ZS5wcmV2ZW50RGVmYXVsdCgpO1xuXHRcdH1cblx0fTtcblxuXHRjb25zdCBwcmV2aW91c2x5X2ZvY3VzZWQgPSB0eXBlb2YgZG9jdW1lbnQgIT09ICd1bmRlZmluZWQnICYmIGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQ7XG5cblx0aWYgKHByZXZpb3VzbHlfZm9jdXNlZCkge1xuXHRcdG9uRGVzdHJveSgoKSA9PiB7XG5cdFx0XHRwcmV2aW91c2x5X2ZvY3VzZWQuZm9jdXMoKTtcblx0XHR9KTtcblx0fVxuPC9zY3JpcHQ+XG5cbjxzdmVsdGU6d2luZG93IG9uOmtleWRvd249e2hhbmRsZV9rZXlkb3dufS8+XG5cbjxkaXYgY2xhc3M9XCJtb2RhbC1iYWNrZ3JvdW5kXCIgb246Y2xpY2s9e2Nsb3NlfT48L2Rpdj5cblxuPGRpdiBjbGFzcz1cIm5ld21vZGFsXCIgcm9sZT1cImRpYWxvZ1wiIGFyaWEtbW9kYWw9XCJ0cnVlXCIgYmluZDp0aGlzPXttb2RhbH0+XG5cblx0PHNsb3QgbmFtZT1cImhlYWRlclwiPjwvc2xvdD5cblx0XG5cdDxocj5cblx0PHNsb3Q+PC9zbG90PlxuXHQ8aHI+XG5cblx0PCEtLSBzdmVsdGUtaWdub3JlIGExMXktYXV0b2ZvY3VzIC0tPlxuXHQ8YnV0dG9uIGF1dG9mb2N1cyBvbjpjbGljaz17Y2xvc2V9PlNjaGxpZXNzZW48L2J1dHRvbj5cbjwvZGl2PlxuXG48c3R5bGU+XG5cdC5tb2RhbC1iYWNrZ3JvdW5kIHtcblx0XHRwb3NpdGlvbjogZml4ZWQ7XG5cdFx0dG9wOiAwO1xuXHRcdGxlZnQ6IDA7XG5cdFx0d2lkdGg6IDEwMCU7XG5cdFx0aGVpZ2h0OiAxMDAlO1xuXHRcdGJhY2tncm91bmQ6IHJnYmEoMCwwLDAsMC4zKTtcblx0fVxuXG5cdC5uZXdtb2RhbCB7XG5cdFx0cG9zaXRpb246IGFic29sdXRlO1xuXHRcdGxlZnQ6IDUwJTtcblx0XHR0b3A6IDUwJTtcblx0XHR3aWR0aDogY2FsYygxMDB2dyAtIDRlbSk7XG5cdFx0bWF4LXdpZHRoOiAzMmVtO1xuXHRcdG1heC1oZWlnaHQ6IGNhbGMoMTAwdmggLSA0ZW0pO1xuXHRcdG92ZXJmbG93OiBhdXRvO1xuXHRcdHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsLTUwJSk7XG5cdFx0cGFkZGluZzogMWVtO1xuXHRcdGJvcmRlci1yYWRpdXM6IDAuMmVtO1xuXHRcdGJhY2tncm91bmQ6IHdoaXRlO1xuXHR9XG5cblx0YnV0dG9uIHtcblx0XHRkaXNwbGF5OiBibG9jaztcblx0fVxuPC9zdHlsZT5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3REMsaUJBQWlCLGVBQUMsQ0FBQyxBQUNsQixRQUFRLENBQUUsS0FBSyxDQUNmLEdBQUcsQ0FBRSxDQUFDLENBQ04sSUFBSSxDQUFFLENBQUMsQ0FDUCxLQUFLLENBQUUsSUFBSSxDQUNYLE1BQU0sQ0FBRSxJQUFJLENBQ1osVUFBVSxDQUFFLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLEFBQzVCLENBQUMsQUFFRCxTQUFTLGVBQUMsQ0FBQyxBQUNWLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLElBQUksQ0FBRSxHQUFHLENBQ1QsR0FBRyxDQUFFLEdBQUcsQ0FDUixLQUFLLENBQUUsS0FBSyxLQUFLLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUN4QixTQUFTLENBQUUsSUFBSSxDQUNmLFVBQVUsQ0FBRSxLQUFLLEtBQUssQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQzdCLFFBQVEsQ0FBRSxJQUFJLENBQ2QsU0FBUyxDQUFFLFVBQVUsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUMvQixPQUFPLENBQUUsR0FBRyxDQUNaLGFBQWEsQ0FBRSxLQUFLLENBQ3BCLFVBQVUsQ0FBRSxLQUFLLEFBQ2xCLENBQUMsQUFFRCxNQUFNLGVBQUMsQ0FBQyxBQUNQLE9BQU8sQ0FBRSxLQUFLLEFBQ2YsQ0FBQyJ9 */";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_dev"])(document_1.head, style);
 }
 
@@ -42478,11 +42499,11 @@ function create_fragment(ctx) {
       button.textContent = "Schliessen";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(div0, "class", "modal-background svelte-17ihrzc");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(div0, file, 41, 0, 890);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(hr0, file, 46, 1, 1049);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(hr1, file, 48, 1, 1070);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(hr0, file, 47, 1, 1051);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(hr1, file, 49, 1, 1072);
       button.autofocus = true;
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(button, "class", "svelte-17ihrzc");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button, file, 51, 1, 1116);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(button, file, 52, 1, 1118);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(div1, "class", "newmodal svelte-17ihrzc");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(div1, "role", "dialog");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(div1, "aria-modal", "true");
@@ -43293,17 +43314,17 @@ function create_default_slot(ctx) {
       input1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("input");
       t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       input2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("input");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(p, file, 131, 4, 3465);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(p, file, 131, 4, 3466);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input0, "type", "number");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input0, "max", input0_max_value =
       /*elementToEdit*/
       ctx[3].quantity);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input0, file, 132, 2, 3484);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input0, file, 132, 2, 3485);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input1, "type", "text");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input1, file, 133, 2, 3599);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input1, file, 133, 2, 3600);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr_dev"])(input2, "type", "button");
       input2.value = "Speichern";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input2, file, 134, 1, 3673);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(input2, file, 134, 1, 3674);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, t0, anchor);
