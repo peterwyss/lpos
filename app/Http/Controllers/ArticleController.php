@@ -50,6 +50,7 @@ class ArticleController extends Controller
         $article->purchasePrice = request('purchasePrice');
         $article->stock = request('stock');
         $article->printer = request('printer');
+        $article->combi = request('combi');
 
         $article->save();
         $articleList = Article::all();

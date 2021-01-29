@@ -33,7 +33,8 @@ async function saveArticle(article){
 				'price'    : article.price,
 				'purchasePrice' : article.purchasePrice,
 				'stock' : article.stock,
-				'printer' : 1
+				'printer' : 1,
+				'combi' : ['test','ein_test']
 			}
 		});
 		console.log("Response: ",response);

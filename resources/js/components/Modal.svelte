@@ -44,6 +44,7 @@
 <div class="newmodal" role="dialog" aria-modal="true" bind:this={modal}>
 
 	<slot name="header"></slot>
+	
 	<hr>
 	<slot></slot>
 	<hr>

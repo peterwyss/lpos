@@ -3,6 +3,8 @@
 
 	var articleButtonList = [];
 	var button = [];
+	var selectedButton = [];
+	var element = [];
 	
 
 	onMount(() => {
@@ -14,6 +16,9 @@
 
 			});
 			articleButtonList = response.data.articleButtonList;
+		element = articleButtonList.slice(1,2);
+		console.log(element);
+		console.log(element[0]['name']);
 
       }
 
@@ -39,10 +44,22 @@ async function updateButton(button){
 		console.log(response);
 		res = response.data.message;
 
+
 }
 
 
 </script>
+<select bind:value={selectedButton}>
+{#each articleButtonList as button}
+  <option  value={button}> {button.name}</option>
+  {/each}
+</select>
+{#if selectedButton.id }
+{selectedButton.id}
+{selectedButton.name}
+{selectedButton.level}
+{selectedButton.reference}
+{/if}
 
 <main>
 	<div class="container">

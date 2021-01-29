@@ -127,7 +127,7 @@ function saveChange() {
 {#if showModal}
 	<Modal on:close="{() => showModal = false}">
 		<h2 slot="header">
-			{elementToEdit.name}
+			{elementToEdit.name} 
 		</h2>
     <p>{addText}</p>
   <input type="number"  on:change="{handleChange}" max="{elementToEdit.quantity}" bind:value="{elementQuantity}"/>

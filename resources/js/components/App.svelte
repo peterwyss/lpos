@@ -138,6 +138,7 @@ function setLevel(level){
 					<ControlButtons {articleList} bind:invoiceId = {invoiceId}/>
 					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
+					<button type="button"  class="btn btn-primary" on:click={setLevel}>Offen </button>
 
 					{#each articleLevelData as level}
 					  <button type="button"  class="btn btn-primary" on:click={filter(level.id)}>{level.name} </button>
