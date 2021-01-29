@@ -41587,8 +41587,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _stores_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stores.js */ "./resources/js/components/stores.js");
 /* harmony import */ var _handler_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./handler.js */ "./resources/js/components/handler.js");
-/* harmony import */ var _Modal_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modal.svelte */ "./resources/js/components/Modal.svelte");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _stores_controllButtons_store_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./stores/controllButtons/store.js */ "./resources/js/components/stores/controllButtons/store.js");
+/* harmony import */ var _Modal_svelte__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Modal.svelte */ "./resources/js/components/Modal.svelte");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41639,12 +41640,13 @@ var console_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_1__["globals"].console;
 
 
 
-var file = "resources/js/components/ControlButtons.svelte"; // (110:0) {#if showModal}
+
+var file = "resources/js/components/ControlButtons.svelte"; // (122:0) {#if showModal}
 
 function create_if_block(ctx) {
   var modal;
   var current;
-  modal = new _Modal_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  modal = new _Modal_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
     props: {
       $$slots: {
         header: [create_header_slot]
@@ -41671,7 +41673,7 @@ function create_if_block(ctx) {
 
       if (dirty &
       /*$$scope*/
-      1048576) {
+      4194304) {
         modal_changes.$$scope = {
           dirty: dirty,
           ctx: ctx
@@ -41697,11 +41699,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(110:0) {#if showModal}",
+    source: "(122:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (113:2) <h2 slot="header">
+} // (125:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -41711,7 +41713,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("h2");
       h2.textContent = "Error";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 112, 2, 2771);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 124, 2, 3033);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, h2, anchor);
@@ -41724,7 +41726,7 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(113:2) <h2 slot=\\\"header\\\">",
+    source: "(125:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
@@ -41752,10 +41754,10 @@ function create_fragment(ctx) {
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "button");
       input0.value = "Enter";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 106, 0, 2568);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 118, 0, 2830);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "button");
       input1.value = "Close";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 107, 0, 2629);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 119, 0, 2891);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -41848,9 +41850,14 @@ function instance($$self, $$props, $$invalidate) {
   var lastOrderList = [];
   var posStatus = ""; //closed
 
+  var controllButtonList = [];
   var _$$props$invoiceId = $$props.invoiceId,
       invoiceId = _$$props$invoiceId === void 0 ? 0 : _$$props$invoiceId;
-  Object(svelte__WEBPACK_IMPORTED_MODULE_5__["onMount"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+  var unsubscribe = _stores_controllButtons_store_js__WEBPACK_IMPORTED_MODULE_4__["controllButtonStore"].subscribe(function (value) {
+    controllButtonList = value;
+  });
+  console.log("ControllButtons: ", controllButtonList);
+  Object(svelte__WEBPACK_IMPORTED_MODULE_6__["onMount"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -41973,8 +41980,9 @@ function instance($$self, $$props, $$invalidate) {
       getNewInvoice: _handler_js__WEBPACK_IMPORTED_MODULE_3__["getNewInvoice"],
       saveJournal: _handler_js__WEBPACK_IMPORTED_MODULE_3__["saveJournal"],
       updateInvoice: _handler_js__WEBPACK_IMPORTED_MODULE_3__["updateInvoice"],
-      Modal: _Modal_svelte__WEBPACK_IMPORTED_MODULE_4__["default"],
-      onMount: svelte__WEBPACK_IMPORTED_MODULE_5__["onMount"],
+      controllButtonStore: _stores_controllButtons_store_js__WEBPACK_IMPORTED_MODULE_4__["controllButtonStore"],
+      Modal: _Modal_svelte__WEBPACK_IMPORTED_MODULE_5__["default"],
+      onMount: svelte__WEBPACK_IMPORTED_MODULE_6__["onMount"],
       articleList: articleList,
       orderList: orderList,
       total: total,
@@ -41984,7 +41992,9 @@ function instance($$self, $$props, $$invalidate) {
       showModal: showModal,
       lastOrderList: lastOrderList,
       posStatus: posStatus,
+      controllButtonList: controllButtonList,
       invoiceId: invoiceId,
+      unsubscribe: unsubscribe,
       unsubscribeOrderlist: unsubscribeOrderlist,
       unsubscribetotal: unsubscribetotal,
       unsubscribelasttotal: unsubscribelasttotal,
@@ -42006,6 +42016,7 @@ function instance($$self, $$props, $$invalidate) {
     if ("showModal" in $$props) $$invalidate(0, showModal = $$props.showModal);
     if ("lastOrderList" in $$props) lastOrderList = $$props.lastOrderList;
     if ("posStatus" in $$props) posStatus = $$props.posStatus;
+    if ("controllButtonList" in $$props) controllButtonList = $$props.controllButtonList;
     if ("invoiceId" in $$props) $$invalidate(2, invoiceId = $$props.invoiceId);
   };
 
@@ -43975,6 +43986,30 @@ var lastOrderListStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writa
 var totalStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])(0);
 var lastTotalStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])(0);
 var posStatusStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])('');
+
+/***/ }),
+
+/***/ "./resources/js/components/stores/controllButtons/store.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/stores/controllButtons/store.js ***!
+  \*****************************************************************/
+/*! exports provided: controllButtonStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "controllButtonStore", function() { return controllButtonStore; });
+/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/svelte/store/index.mjs");
+
+var controllButtonStore = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])([], function start(set) {
+  fetch(process.env.SITE + "/controllButtonController/index").then(function (response) {
+    return response.json();
+  }).then(function (response) {
+    console.log("controllButtonStore: ", response);
+    set(response);
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 

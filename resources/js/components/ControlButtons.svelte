@@ -4,12 +4,16 @@ import { totalStore } from './stores.js';
 import { lastTotalStore } from './stores.js'; 
 import { getNewInvoice } from './handler.js';
 import { saveJournal, updateInvoice } from './handler.js';
+import { controllButtonStore}  from './stores/controllButtons/store.js';
 import Modal from './Modal.svelte';
 
 import { onMount } from "svelte";
 //import Error from './Error.svelte';
 
+
+
 export let articleList;
+
 
 
 
@@ -21,8 +25,15 @@ let response = "";
 let showModal = false;
 let lastOrderList = [];
 let posStatus = ""; //closed
+let controllButtonList = [];
 
 export let invoiceId = 0;
+
+  const unsubscribe = controllButtonStore.subscribe(value => {
+	controllButtonList = value;
+  });
+  console.log("ControllButtons: ", controllButtonList);
+
 
 onMount(async () => {
     invoiceId = await getNewInvoice();
@@ -101,6 +112,7 @@ function saveData(dest){
    } 
 
 }  
+
 </script>
 
 

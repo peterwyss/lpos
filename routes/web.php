@@ -44,3 +44,5 @@ Route::post('/invoice/update', 'InvoiceController@update');
 
 
 Route::post('/journal/store', 'JournalController@store');
+
+Route::get('/controllButton/index', 'ControllButtonController@index');
