@@ -39,6 +39,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
         $invoice->status = request('status');
         $invoice->sum = request('sum');
+        $invoice->vat = request('vat');
         $invoice->period = 0;
         $invoice->save();
         Log::debug($invoice); 

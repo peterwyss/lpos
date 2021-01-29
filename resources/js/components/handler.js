@@ -3,7 +3,8 @@ export async function getNewInvoice(){
 		return axios.post("/invoice/store",
 			{
         'status' : 0,
-				'sum' :  0
+        'sum' :  0,
+        'vat' : 0
       } 
 		)
 		.then(response => {

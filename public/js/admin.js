@@ -42697,23 +42697,163 @@ var file = "resources/js/components/admin/forms/EditArticleButton.svelte";
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[1] = list[i];
-  child_ctx[5] = list;
-  child_ctx[6] = i;
+  child_ctx[2] = list[i];
+  child_ctx[8] = list;
+  child_ctx[9] = i;
   return child_ctx;
-} // (54:6) {#each  articleButtonList as button}
+}
+
+function get_each_context_1(ctx, list, i) {
+  var child_ctx = ctx.slice();
+  child_ctx[2] = list[i];
+  return child_ctx;
+} // (53:0) {#each articleButtonList as button}
+
+
+function create_each_block_1(ctx) {
+  var option;
+  var t_value =
+  /*button*/
+  ctx[2].name + "";
+  var t;
+  var option_value_value;
+  var block = {
+    c: function create() {
+      option = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("option");
+      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t_value);
+      option.__value = option_value_value =
+      /*button*/
+      ctx[2];
+      option.value = option.__value;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(option, file, 53, 2, 1029);
+    },
+    m: function mount(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, option, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(option, t);
+    },
+    p: function update(ctx, dirty) {
+      if (dirty &
+      /*articleButtonList*/
+      1 && t_value !== (t_value =
+      /*button*/
+      ctx[2].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t, t_value);
+
+      if (dirty &
+      /*articleButtonList*/
+      1 && option_value_value !== (option_value_value =
+      /*button*/
+      ctx[2])) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["prop_dev"])(option, "__value", option_value_value);
+        option.value = option.__value;
+      }
+    },
+    d: function destroy(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(option);
+    }
+  };
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["dispatch_dev"])("SvelteRegisterBlock", {
+    block: block,
+    id: create_each_block_1.name,
+    type: "each",
+    source: "(53:0) {#each articleButtonList as button}",
+    ctx: ctx
+  });
+  return block;
+} // (57:0) {#if selectedButton.id }
+
+
+function create_if_block(ctx) {
+  var t0_value =
+  /*selectedButton*/
+  ctx[1].id + "";
+  var t0;
+  var t1;
+  var t2_value =
+  /*selectedButton*/
+  ctx[1].name + "";
+  var t2;
+  var t3;
+  var t4_value =
+  /*selectedButton*/
+  ctx[1].level + "";
+  var t4;
+  var t5;
+  var t6_value =
+  /*selectedButton*/
+  ctx[1].reference + "";
+  var t6;
+  var block = {
+    c: function create() {
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t0_value);
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t2_value);
+      t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t4_value);
+      t5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t6_value);
+    },
+    m: function mount(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t0, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t1, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t2, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t3, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t4, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t5, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t6, anchor);
+    },
+    p: function update(ctx, dirty) {
+      if (dirty &
+      /*selectedButton*/
+      2 && t0_value !== (t0_value =
+      /*selectedButton*/
+      ctx[1].id + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t0, t0_value);
+      if (dirty &
+      /*selectedButton*/
+      2 && t2_value !== (t2_value =
+      /*selectedButton*/
+      ctx[1].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t2, t2_value);
+      if (dirty &
+      /*selectedButton*/
+      2 && t4_value !== (t4_value =
+      /*selectedButton*/
+      ctx[1].level + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t4, t4_value);
+      if (dirty &
+      /*selectedButton*/
+      2 && t6_value !== (t6_value =
+      /*selectedButton*/
+      ctx[1].reference + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t6, t6_value);
+    },
+    d: function destroy(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t0);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t1);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t2);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t3);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t4);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t5);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t6);
+    }
+  };
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["dispatch_dev"])("SvelteRegisterBlock", {
+    block: block,
+    id: create_if_block.name,
+    type: "if",
+    source: "(57:0) {#if selectedButton.id }",
+    ctx: ctx
+  });
+  return block;
+} // (71:6) {#each  articleButtonList as button}
 
 
 function create_each_block(ctx) {
   var p;
   var t0_value =
   /*button*/
-  ctx[1].id + "";
+  ctx[2].id + "";
   var t0;
   var t1;
   var t2_value =
   /*button*/
-  ctx[1].name + "";
+  ctx[2].name + "";
   var t2;
   var t3;
   var div0;
@@ -42736,29 +42876,29 @@ function create_each_block(ctx) {
 
   function input0_input_handler() {
     /*input0_input_handler*/
-    ctx[2].call(input0,
+    ctx[4].call(input0,
     /*each_value*/
-    ctx[5],
+    ctx[8],
     /*button_index*/
-    ctx[6]);
+    ctx[9]);
   }
 
   function input1_input_handler() {
     /*input1_input_handler*/
-    ctx[3].call(input1,
+    ctx[5].call(input1,
     /*each_value*/
-    ctx[5],
+    ctx[8],
     /*button_index*/
-    ctx[6]);
+    ctx[9]);
   }
 
   function input2_input_handler() {
     /*input2_input_handler*/
-    ctx[4].call(input2,
+    ctx[6].call(input2,
     /*each_value*/
-    ctx[5],
+    ctx[8],
     /*button_index*/
-    ctx[6]);
+    ctx[9]);
   }
 
   var block = {
@@ -42786,34 +42926,34 @@ function create_each_block(ctx) {
       t11 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       input2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("input");
       t12 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(p, file, 54, 7, 1052);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(p, file, 71, 7, 1465);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(label0, "for", "");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label0, file, 56, 28, 1145);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label0, file, 73, 28, 1558);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "name", "name");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "text");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "class", "form-control");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "id", "name");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 57, 28, 1201);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 74, 28, 1614);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div0, "class", "form-group");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 55, 7, 1092);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 72, 7, 1505);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(label1, "for", "");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label1, file, 60, 28, 1381);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label1, file, 77, 28, 1794);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "name", "name");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "number");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "class", "form-control");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "id", "name");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 61, 28, 1441);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 78, 28, 1854);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div1, "class", "form-group");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 59, 6, 1328);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 76, 6, 1741);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(label2, "for", "");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label2, file, 64, 28, 1629);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(label2, file, 81, 28, 2042);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input2, "name", "name");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input2, "type", "number");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input2, "class", "form-control");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input2, "id", "name");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input2, file, 65, 28, 1686);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input2, file, 82, 28, 2099);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div2, "class", "form-group");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 63, 7, 1576);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 80, 7, 1989);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, p, anchor);
@@ -42827,7 +42967,7 @@ function create_each_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div0, input0);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input0,
       /*button*/
-      ctx[1].name);
+      ctx[2].name);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t6, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, div1, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, label1);
@@ -42835,7 +42975,7 @@ function create_each_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div1, input1);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input1,
       /*button*/
-      ctx[1].reference);
+      ctx[2].reference);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t9, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, div2, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, label2);
@@ -42843,7 +42983,7 @@ function create_each_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, input2);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input2,
       /*button*/
-      ctx[1].level);
+      ctx[2].level);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, t12);
 
       if (!mounted) {
@@ -42857,41 +42997,41 @@ function create_each_block(ctx) {
       /*articleButtonList*/
       1 && t0_value !== (t0_value =
       /*button*/
-      ctx[1].id + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t0, t0_value);
+      ctx[2].id + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t0, t0_value);
       if (dirty &
       /*articleButtonList*/
       1 && t2_value !== (t2_value =
       /*button*/
-      ctx[1].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t2, t2_value);
+      ctx[2].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t2, t2_value);
 
       if (dirty &
       /*articleButtonList*/
       1 && input0.value !==
       /*button*/
-      ctx[1].name) {
+      ctx[2].name) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input0,
         /*button*/
-        ctx[1].name);
+        ctx[2].name);
       }
 
       if (dirty &
       /*articleButtonList*/
       1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["to_number"])(input1.value) !==
       /*button*/
-      ctx[1].reference) {
+      ctx[2].reference) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input1,
         /*button*/
-        ctx[1].reference);
+        ctx[2].reference);
       }
 
       if (dirty &
       /*articleButtonList*/
       1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["to_number"])(input2.value) !==
       /*button*/
-      ctx[1].level) {
+      ctx[2].level) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_input_value"])(input2,
         /*button*/
-        ctx[1].level);
+        ctx[2].level);
       }
     },
     d: function destroy(detaching) {
@@ -42910,33 +43050,60 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(54:6) {#each  articleButtonList as button}",
+    source: "(71:6) {#each  articleButtonList as button}",
     ctx: ctx
   });
   return block;
 }
 
 function create_fragment(ctx) {
+  var select;
+  var t0;
+  var t1;
   var main;
   var div5;
   var div4;
   var div3;
   var div2;
   var div0;
-  var t1;
+  var t3;
   var div1;
+  var mounted;
+  var dispose;
+  var each_value_1 =
+  /*articleButtonList*/
+  ctx[0];
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_each_argument"])(each_value_1);
+  var each_blocks_1 = [];
+
+  for (var i = 0; i < each_value_1.length; i += 1) {
+    each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+  }
+
+  var if_block =
+  /*selectedButton*/
+  ctx[1].id && create_if_block(ctx);
   var each_value =
   /*articleButtonList*/
   ctx[0];
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_each_argument"])(each_value);
   var each_blocks = [];
 
-  for (var i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+  for (var _i = 0; _i < each_value.length; _i += 1) {
+    each_blocks[_i] = create_each_block(get_each_context(ctx, each_value, _i));
   }
 
   var block = {
     c: function create() {
+      select = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("select");
+
+      for (var _i2 = 0; _i2 < each_blocks_1.length; _i2 += 1) {
+        each_blocks_1[_i2].c();
+      }
+
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      if (if_block) if_block.c();
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("main");
       div5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
       div4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
@@ -42944,42 +43111,70 @@ function create_fragment(ctx) {
       div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
       div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
       div0.textContent = "Edit";
-      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
 
-      for (var _i = 0; _i < each_blocks.length; _i += 1) {
-        each_blocks[_i].c();
+      for (var _i3 = 0; _i3 < each_blocks.length; _i3 += 1) {
+        each_blocks[_i3].c();
       }
 
+      if (
+      /*selectedButton*/
+      ctx[1] === void 0) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_render_callback"])(function () {
+        return (
+          /*select_change_handler*/
+          ctx[3].call(select)
+        );
+      });
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(select, file, 51, 0, 954);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div0, "class", "card-header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 51, 5, 937);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 68, 5, 1350);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div1, "class", "card-body");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 52, 5, 978);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 69, 5, 1391);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div2, "class", "card");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 50, 4, 913);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 67, 4, 1326);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div3, "class", "col-md-8");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div3, file, 49, 3, 886);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div3, file, 66, 3, 1299);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div4, "class", "row justify-content-center");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div4, file, 48, 2, 842);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div4, file, 65, 2, 1255);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div5, "class", "container");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div5, file, 47, 1, 816);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(main, file, 46, 0, 808);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div5, file, 64, 1, 1229);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(main, file, 63, 0, 1221);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     },
     m: function mount(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, select, anchor);
+
+      for (var _i4 = 0; _i4 < each_blocks_1.length; _i4 += 1) {
+        each_blocks_1[_i4].m(select, null);
+      }
+
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["select_option"])(select,
+      /*selectedButton*/
+      ctx[1]);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t0, anchor);
+      if (if_block) if_block.m(target, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, t1, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, main, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(main, div5);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div5, div4);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div4, div3);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div3, div2);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, div0);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, t3);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append_dev"])(div2, div1);
 
-      for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
-        each_blocks[_i2].m(div1, null);
+      for (var _i5 = 0; _i5 < each_blocks.length; _i5 += 1) {
+        each_blocks[_i5].m(div1, null);
+      }
+
+      if (!mounted) {
+        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["listen_dev"])(select, "change",
+        /*select_change_handler*/
+        ctx[3]);
+        mounted = true;
       }
     },
     p: function update(ctx, _ref) {
@@ -42989,29 +43184,83 @@ function create_fragment(ctx) {
       if (dirty &
       /*articleButtonList*/
       1) {
+        each_value_1 =
+        /*articleButtonList*/
+        ctx[0];
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_each_argument"])(each_value_1);
+
+        var _i6;
+
+        for (_i6 = 0; _i6 < each_value_1.length; _i6 += 1) {
+          var child_ctx = get_each_context_1(ctx, each_value_1, _i6);
+
+          if (each_blocks_1[_i6]) {
+            each_blocks_1[_i6].p(child_ctx, dirty);
+          } else {
+            each_blocks_1[_i6] = create_each_block_1(child_ctx);
+
+            each_blocks_1[_i6].c();
+
+            each_blocks_1[_i6].m(select, null);
+          }
+        }
+
+        for (; _i6 < each_blocks_1.length; _i6 += 1) {
+          each_blocks_1[_i6].d(1);
+        }
+
+        each_blocks_1.length = each_value_1.length;
+      }
+
+      if (dirty &
+      /*selectedButton, articleButtonList*/
+      3) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["select_option"])(select,
+        /*selectedButton*/
+        ctx[1]);
+      }
+
+      if (
+      /*selectedButton*/
+      ctx[1].id) {
+        if (if_block) {
+          if_block.p(ctx, dirty);
+        } else {
+          if_block = create_if_block(ctx);
+          if_block.c();
+          if_block.m(t1.parentNode, t1);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
+
+      if (dirty &
+      /*articleButtonList*/
+      1) {
         each_value =
         /*articleButtonList*/
         ctx[0];
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_each_argument"])(each_value);
 
-        var _i3;
+        var _i7;
 
-        for (_i3 = 0; _i3 < each_value.length; _i3 += 1) {
-          var child_ctx = get_each_context(ctx, each_value, _i3);
+        for (_i7 = 0; _i7 < each_value.length; _i7 += 1) {
+          var _child_ctx = get_each_context(ctx, each_value, _i7);
 
-          if (each_blocks[_i3]) {
-            each_blocks[_i3].p(child_ctx, dirty);
+          if (each_blocks[_i7]) {
+            each_blocks[_i7].p(_child_ctx, dirty);
           } else {
-            each_blocks[_i3] = create_each_block(child_ctx);
+            each_blocks[_i7] = create_each_block(_child_ctx);
 
-            each_blocks[_i3].c();
+            each_blocks[_i7].c();
 
-            each_blocks[_i3].m(div1, null);
+            each_blocks[_i7].m(div1, null);
           }
         }
 
-        for (; _i3 < each_blocks.length; _i3 += 1) {
-          each_blocks[_i3].d(1);
+        for (; _i7 < each_blocks.length; _i7 += 1) {
+          each_blocks[_i7].d(1);
         }
 
         each_blocks.length = each_value.length;
@@ -43020,8 +43269,15 @@ function create_fragment(ctx) {
     i: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
     o: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
     d: function destroy(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(select);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_each"])(each_blocks_1, detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t0);
+      if (if_block) if_block.d(detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t1);
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(main);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_each"])(each_blocks, detaching);
+      mounted = false;
+      dispose();
     }
   };
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["dispatch_dev"])("SvelteRegisterBlock", {
@@ -43079,6 +43335,8 @@ function _updateButton() {
 function instance($$self, $$props, $$invalidate) {
   var articleButtonList = [];
   var button = [];
+  var selectedButton = [];
+  var element = [];
   Object(svelte__WEBPACK_IMPORTED_MODULE_2__["onMount"])(function () {
     getArticleButtons();
 
@@ -43102,8 +43360,11 @@ function instance($$self, $$props, $$invalidate) {
               case 2:
                 response = _context.sent;
                 $$invalidate(0, articleButtonList = response.data.articleButtonList);
+                element = articleButtonList.slice(1, 2);
+                console.log(element);
+                console.log(element[0]["name"]);
 
-              case 4:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -43121,6 +43382,12 @@ function instance($$self, $$props, $$invalidate) {
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_slots"])("EditArticleButton", $$slots, []);
+
+  function select_change_handler() {
+    selectedButton = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["select_value"])(this);
+    $$invalidate(1, selectedButton);
+    $$invalidate(0, articleButtonList);
+  }
 
   function input0_input_handler(each_value, button_index) {
     each_value[button_index].name = this.value;
@@ -43142,20 +43409,24 @@ function instance($$self, $$props, $$invalidate) {
       onMount: svelte__WEBPACK_IMPORTED_MODULE_2__["onMount"],
       articleButtonList: articleButtonList,
       button: button,
+      selectedButton: selectedButton,
+      element: element,
       updateButton: updateButton
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("articleButtonList" in $$props) $$invalidate(0, articleButtonList = $$props.articleButtonList);
-    if ("button" in $$props) $$invalidate(1, button = $$props.button);
+    if ("button" in $$props) $$invalidate(2, button = $$props.button);
+    if ("selectedButton" in $$props) $$invalidate(1, selectedButton = $$props.selectedButton);
+    if ("element" in $$props) element = $$props.element;
   };
 
   if ($$props && "$$inject" in $$props) {
     $$self.$inject_state($$props.$$inject);
   }
 
-  return [articleButtonList, button, input0_input_handler, input1_input_handler, input2_input_handler];
+  return [articleButtonList, selectedButton, button, select_change_handler, input0_input_handler, input1_input_handler, input2_input_handler];
 }
 
 var EditArticleButton = /*#__PURE__*/function (_SvelteComponentDev) {

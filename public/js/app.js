@@ -41639,7 +41639,7 @@ var console_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_1__["globals"].console;
 
 
 
-var file = "resources/js/components/ControlButtons.svelte"; // (109:0) {#if showModal}
+var file = "resources/js/components/ControlButtons.svelte"; // (110:0) {#if showModal}
 
 function create_if_block(ctx) {
   var modal;
@@ -41697,11 +41697,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(109:0) {#if showModal}",
+    source: "(110:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (112:2) <h2 slot="header">
+} // (113:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -41711,7 +41711,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("h2");
       h2.textContent = "Error";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 111, 2, 2739);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 112, 2, 2771);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, h2, anchor);
@@ -41724,7 +41724,7 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(112:2) <h2 slot=\\\"header\\\">",
+    source: "(113:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
@@ -41752,10 +41752,10 @@ function create_fragment(ctx) {
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "button");
       input0.value = "Enter";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 105, 0, 2536);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 106, 0, 2568);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "button");
       input1.value = "Close";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 106, 0, 2597);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 107, 0, 2629);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -41930,6 +41930,8 @@ function instance($$self, $$props, $$invalidate) {
   }
 
   function handleClick(dest) {
+    console.log("Dest: ", dest);
+
     if (invoiceId < 0) {
       getInvoiceNumber().then(function () {
         saveData(dest);
@@ -43832,7 +43834,8 @@ function _getNewInvoice() {
           case 0:
             return _context.abrupt("return", axios.post("/invoice/store", {
               'status': 0,
-              'sum': 0
+              'sum': 0,
+              'vat': 0
             }).then(function (response) {
               console.log("getNewInvoice response:", response.data.invoiceId);
               var res = response.data.message;

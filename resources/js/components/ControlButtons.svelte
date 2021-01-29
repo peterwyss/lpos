@@ -90,6 +90,7 @@ function saveData(dest){
 }
 
  function handleClick(dest){
+    console.log("Dest: ",dest);
    if(invoiceId < 0){
       getInvoiceNumber()
       .then(() => {
