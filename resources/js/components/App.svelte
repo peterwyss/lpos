@@ -96,13 +96,6 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 		  'addText'  : "",
 		  'group' : 1
 		}
-		/*
-		Hier das neue Element zur Orderlist hinzufügen.
-		Ist Element vorhanden = orderElement.quantity += +
-		sonst neues Element
-		*/
-
-		console.log("orderElement: " , orderElement);
 		if(orderList.length == 0){
 			orderList = [orderElement, ...orderList];
 		}else{
@@ -115,9 +108,7 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 			}
 
 		}	
-        console.log("addarticle orderList: ",orderList);
 		orderListStore.set(orderList)
-		console.log("Länge: ",filteredArticleList.length);
 
 	}
 	function findElement(oElement){
@@ -127,7 +118,6 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
                 ex =  i;
             }
 		});
-		console.log("findElement: " , ex);
         return ex;
 	} 
 function setLevel(level){
@@ -137,11 +127,10 @@ function sortArticleButtons(){
   filteredArticleList.sort(function(a,b) {
     return a.position - b.position;
   });
-  console.log("sortedArticleButtons: ", filteredArticleList);
 
 	
 }
-console.log("Länge: ",filteredArticleList.length);
+
 </script>
 
 <main>

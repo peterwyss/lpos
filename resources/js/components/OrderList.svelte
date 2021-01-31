@@ -1,5 +1,4 @@
 <script>
-	import {articleListStore} from './stores/articleList/store.js';
   import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
 
@@ -15,6 +14,7 @@ import Modal from './Modal.svelte';
   let elementQuantity = 0;
   let addText = "";
   let posStatus = "";
+
 
   const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;

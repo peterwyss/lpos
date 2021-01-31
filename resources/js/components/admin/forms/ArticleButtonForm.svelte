@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { articleListStore } from "./../../stores.js";
+	import { articleListStore } from "./../../stores/articleList/store.js";
 
 	var button = [];
 	var res = "";

@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { articleListStore } from "./../../stores.js";
+	import { articleListStore } from "./../../stores/articleList/store.js";
 
 	var article = [];
 	var res = "";
@@ -46,7 +46,7 @@ async function saveArticle(article){
 function pluChange(e){
 	console.log(e.target.value);
 	console.log(allArticle);
-	const existPlu = allArticle.find(element => element.plu == e.target.value)
+	const existPlu = allArticle[0].find(element => element.plu == e.target.value)
 	console.log(existPlu);
 	if(existPlu != undefined){
 		formMessage = "Diese Nummer wird bereits verwendet!"
