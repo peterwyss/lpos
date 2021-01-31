@@ -28,7 +28,8 @@ async function saveButton(button){
 			params: {
                 'name' : button.name,
 				'reference' : button.reference,
-				'level' : button.level
+				'level' : button.level,
+				'position' : button.position
 
 			}
 		});
@@ -37,7 +38,6 @@ async function saveButton(button){
 		
 
 }
-
 
 </script>
 
@@ -63,10 +63,14 @@ async function saveButton(button){
 						  </select>
 						
 						</div>
-							<div class="form-group">
+						<div class="form-group">
                             <label for="">Ebene:</label>
                             <input name='level' type='number' class='form-control' id='level' bind:value="{button.level}">
                         </div>
+						<div class="form-group">
+                            <label for="">Position:</label>
+                            <input name='position' type='number' class='form-control' id='level' bind:value="{button.position}">
+                        </div>						
 							<input type="button"  on:click|preventDefault="{() => saveButton(button)}" value="Save" />
 						
 					</div>

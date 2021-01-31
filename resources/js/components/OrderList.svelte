@@ -1,5 +1,5 @@
 <script>
-  import { articleListStore } from './stores.js';
+	import {articleListStore} from './stores/articleList/store.js';
   import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
   import { beforeUpdate, onMount  } from "svelte";
 

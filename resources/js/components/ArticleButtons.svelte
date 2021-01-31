@@ -1,6 +1,7 @@
 <script>
 import { orderListStore } from './stores';
-import { articleListStore} from './stores';
+import {articleListStore} from './stores/articleList/store.js';
+
 
 
 export let filteredArticleList;

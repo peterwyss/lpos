@@ -11,6 +11,6 @@ class ControllButtonController extends Controller
     public function index()
     {
         $controllButtonList = ControllButton::all();
-        return response()->json(["controllButtonList" => $controllButtonList]);
+        return response()->json([ $controllButtonList]);
     }
 }

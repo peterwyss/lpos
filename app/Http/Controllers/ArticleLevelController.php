@@ -15,7 +15,7 @@ class ArticleLevelController extends Controller
     public function index()
     {
         $articleLevelList = ArticleLevel::all();
-        return response()->json(["articleLevelList" => $articleLevelList]);
+        return response()->json([$articleLevelList]);
        
     }
 

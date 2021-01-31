@@ -45,6 +45,8 @@ class ArticleButtonController extends Controller
         $articleButton->name = request('name');
         $articleButton->reference = request('reference');
         $articleButton->level = request('level');
+        $articleButton->position = request('position');
+
         Log::debug($articleButton);
         $articleButton->save();
 

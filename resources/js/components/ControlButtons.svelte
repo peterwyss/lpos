@@ -2,6 +2,8 @@
 import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
 import { totalStore } from './stores.js'; 
 import { lastTotalStore } from './stores.js'; 
+import {articleListStore} from './stores/articleList/store.js';
+
 import { getNewInvoice } from './handler.js';
 import { saveJournal, updateInvoice } from './handler.js';
 import { controllButtonStore}  from './stores/controllButtons/store.js';
@@ -9,12 +11,6 @@ import Modal from './Modal.svelte';
 
 import { onMount } from "svelte";
 //import Error from './Error.svelte';
-
-
-
-export let articleList;
-
-
 
 
 let orderList = [];
@@ -29,16 +25,16 @@ let controllButtonList = [];
 
 export let invoiceId = 0;
 
-  const unsubscribe = controllButtonStore.subscribe(value => {
-	controllButtonList = value;
-  });
-  console.log("ControllButtons: ", controllButtonList);
-
+let articleList = [];
+console.log("anfang: ",articleList);
 
 onMount(async () => {
     invoiceId = await getNewInvoice();
     console.log("new invoice: " , invoiceId);
+    articleList = $articleListStore;
+
 });
+
 
 const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;
@@ -69,13 +65,15 @@ function getInvoiceNumber(){
 }
 
 function saveData(dest){
+   console.log("savaData");
    if(orderList.length == 0){
       console.log("leer");
    }else{ 
    invoice = [];
+    console.log("articleList ", articleList);
     orderList.forEach(item => {
-       console.log(item)
-       const invoiceItem = articleList.find(article => item.id == article.id);
+       console.log("forEach orderlist item: ",item)
+       const invoiceItem = articleList[0].find(article => item.id == article.id);
        invoiceItem.quantity = item.quantity;
        console.log(invoiceItem);
        invoice.push(invoiceItem);
@@ -114,7 +112,11 @@ function saveData(dest){
 }  
 
 </script>
+{#each $controllButtonStore as button}
 
+{button[0].name}
+
+{/each}
 
 <input type="button" on:click={handleClick} value="Enter" />
 <input type="button" on:click={() => handleClick("close")} value="Close" />

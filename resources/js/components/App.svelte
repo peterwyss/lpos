@@ -1,8 +1,10 @@
 <script>
 	import { onMount } from "svelte";
 	import { articleButtonList } from './stores.js';
-	import { articleLevelList } from './stores.js';
-	import { articleListStore, posStatusStore} from './stores.js';
+	import { articleLevelList } from "./stores/articleLevel/store.js";
+
+	import {posStatusStore} from './stores.js';
+	import {articleListStore} from './stores/articleList/store.js';
 	import {orderListStore}  from './stores.js';
  	import ArticleButtons from './ArticleButtons.svelte';
 	import OrderList from "./OrderList.svelte";
@@ -10,8 +12,8 @@
 	import ControlButtons from "./ControlButtons.svelte";
 
 
+
 	let articleButtonData = [];    /* Die List mit allen Artikeln */
-	let articleLevelData = [];     /* Die Liste mit allen Ebenen */
 	let filteredArticleList = [];  /* Artikel nach Ebenen filtern */ 
 	var articleLevel = 1;
 	var invoiceId = 0;			   /* ID der aktuellen Rechnung */	
@@ -41,16 +43,17 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 			});
 			articleButtonData = resButton.data.articleButtonList;
 			articleButtonList.set(articleButtonData);
+			articles = $articleListStore[0];
+			console.log("articles: ",articles);
 	  /* Die Ebenen für das GUI */
-        const resLevel = await axios({
-			    url: "/articleLevel/index",
-			    method: 'GET',
-			});
-			articleLevelData = resLevel.data.articleLevelList;	
-            articleLevelList.set(articleLevelData);
+        //const resLevel = await axios({
+		//	    url: "/articleLevel/index",
+		//	    method: 'GET',
+		//	});
+        //    articleLevelList.set(articleLevelData);
 	  
 	  
-	/* Alle Artikel aus der Datenbank holen*/
+	/* Alle Artikel aus der Datenbank holen
         const resArticle = await axios({
 			    url: "/article/index",
 			    method: 'GET',
@@ -58,8 +61,9 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 			articles = resArticle.data.articleList;
 			console.log("articles: ",articles);
 			articleListStore.set(articles);
-
+    */  
 			filter(articleLevel);
+			sortArticleButtons();
 
 	});
 
@@ -78,7 +82,7 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 	}
 
 	function addArticle(id){
-	console.log(filteredArticleList);
+	console.log("ArticleList: ",filteredArticleList);
 	    posStatusStore.set("open");
 		const found = articles.find(element => element.id == id);
 		console.log("found: ", found);
@@ -112,7 +116,9 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 
 		}	
         console.log("addarticle orderList: ",orderList);
-        orderListStore.set(orderList)
+		orderListStore.set(orderList)
+		console.log("Länge: ",filteredArticleList.length);
+
 	}
 	function findElement(oElement){
         var ex = -1;
@@ -127,6 +133,15 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 function setLevel(level){
 	articleLevel = level;
 }	
+function sortArticleButtons(){
+  filteredArticleList.sort(function(a,b) {
+    return a.position - b.position;
+  });
+  console.log("sortedArticleButtons: ", filteredArticleList);
+
+	
+}
+console.log("Länge: ",filteredArticleList.length);
 </script>
 
 <main>
@@ -135,12 +150,12 @@ function setLevel(level){
 			<div class="col-md-8">
 				<div class="card" >
 					<Display  {orderElement}/>
-					<ControlButtons {articleList} bind:invoiceId = {invoiceId}/>
+					<ControlButtons  bind:invoiceId = {invoiceId}/>
 					<div class="card-header">Test Component {invoiceId}</div>
 					<div class="card-body">
 					<button type="button"  class="btn btn-primary" on:click={setLevel}>Offen </button>
 
-					{#each articleLevelData as level}
+					{#each $articleLevelList as level}
 					  <button type="button"  class="btn btn-primary" on:click={filter(level.id)}>{level.name} </button>
 					{/each}  					
 

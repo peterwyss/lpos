@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { articleLevelList } from "./../../stores.js";
+	import { articleLevelList } from "./../../stores/articleLevel/store.js";
 
 	var level = [];
 	var res = "";
@@ -39,8 +39,8 @@ async function saveLevel(level){
 }
 
 function levelChange(e){
-	console.log(e.target.value);
-	console.log(allLevels);
+	console.log("e.target.value: ",e.target.value);
+	console.log("allLevels: ",allLevels);
 	const exist = allLevels.find(element => element.id == e.target.value)
 	console.log(exist);
 	if(exist != undefined){
