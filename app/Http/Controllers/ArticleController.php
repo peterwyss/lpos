@@ -20,7 +20,7 @@ class ArticleController extends Controller
         Log::debug($articleList);
         Log::channel('journal')->debug($articleList);
 
-        return response()->json([$articleList]);
+        return response()->json(['articleList' => $articleList]);
         
     }
 
@@ -57,7 +57,8 @@ class ArticleController extends Controller
 
 
         return response()->json([
-            'message' => 'Gespeichert!',
+            'message' => 'gespeichert!',
+            'article' => $article->name,
             'articleList' => $articleList
         ],200);
 

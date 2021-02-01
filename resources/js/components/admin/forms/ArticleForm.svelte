@@ -1,11 +1,16 @@
 <script>
 	import { onMount } from "svelte";
 	import { articleListStore } from "./../../stores/articleList/store.js";
+	import {updateData} from "./../../stores.js";
 
 	var article = [];
 	var res = "";
+	var newArticle = "";
 	var allArticle = [];
 	var formMessage = "";
+
+	let name =""; 
+	let plu = 0;
 
 	const unsubscribe = articleListStore.subscribe(value => {
 		allArticle = value;
@@ -27,8 +32,8 @@ async function saveArticle(article){
 			//	'X-CSRF-TOKEN': _TOKEN
 			//},
 			params: {
-                'name' : article.name,
-				'plu' :  article.plu,
+                'name' : name,
+				'plu' :  plu,
 				'category' : article.category,
 				'price'    : article.price,
 				'purchasePrice' : article.purchasePrice,
@@ -39,14 +44,19 @@ async function saveArticle(article){
 		});
 		console.log("Response: ",response);
 		res = response.data.message;
+		newArticle = response.data.article;
+
 		articleListStore.set(response.data.articleList);
+		name = "";
+		plu = 0;
+		$updateData = true;
 
 }
 
 function pluChange(e){
 	console.log(e.target.value);
 	console.log(allArticle);
-	const existPlu = allArticle[0].find(element => element.plu == e.target.value)
+	const existPlu = allArticle.find(element => element.plu == e.target.value)
 	console.log(existPlu);
 	if(existPlu != undefined){
 		formMessage = "Diese Nummer wird bereits verwendet!"
@@ -58,20 +68,21 @@ function pluChange(e){
 </script>
 
 <main>
+{name}
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-header">Admin Component </div>
 					<div class="card-body">
-					<div>{res}</div>
+					<div>{newArticle} {res}</div>
 					    <div class="form-group">
                             <label for="">Name:</label>
-                            <input name='name' type='text' class='form-control' id='name' bind:value="{article.name}"  >
+                            <input name='name' type='text' class='form-control' id='name' bind:value="{name}"  >
                         </div>	
 						<div class="form-group">
                             <label for="">PLU:</label>
-                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{article.plu}" on:change="{(e) => pluChange(e)}">
+                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{plu}" on:change="{(e) => pluChange(e)}">
 							<p>{formMessage}</p>
                         </div>	
 						<div class="form-group">

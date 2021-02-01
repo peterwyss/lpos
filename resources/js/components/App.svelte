@@ -10,6 +10,7 @@
 	import OrderList from "./OrderList.svelte";
 	import Display from "./Display.svelte";
 	import ControlButtons from "./ControlButtons.svelte";
+	import {updateData} from "./stores.js";
 
 
 
@@ -43,7 +44,7 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 			});
 			articleButtonData = resButton.data.articleButtonList;
 			articleButtonList.set(articleButtonData);
-			articles = $articleListStore[0];
+			articles = $articleListStore;
 			console.log("articles: ",articles);
 	  /* Die Ebenen für das GUI */
         //const resLevel = await axios({
@@ -66,7 +67,7 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 			sortArticleButtons();
 
 	});
-
+  
 	/* Neue Rechnung erzeugen -> in der Datenbank eintragen */
 
 	/* Filter für die Ebenen zur Darstellung der Button */  
@@ -75,6 +76,7 @@ const unsubscribePosStatus = posStatusStore.subscribe(value => {
 		filteredArticleList = articleButtonData.filter( item => item.level == articleLevel);
 		console.log("Filtered: ",filteredArticleList);
 		console.log("Level: ",articleLevel);
+		console.log("updateData: ", $updateData);
 	}
 
 	let testFunc = () =>{
@@ -138,6 +140,9 @@ function sortArticleButtons(){
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card" >
+				{#if $updateData == true}
+				<p>Please reload!</p>
+				{/if}
 					<Display  {orderElement}/>
 					<ControlButtons  bind:invoiceId = {invoiceId}/>
 					<div class="card-header">Test Component {invoiceId}</div>
@@ -147,8 +152,10 @@ function sortArticleButtons(){
 					{#each $articleLevelList as level}
 					  <button type="button"  class="btn btn-primary" on:click={filter(level.id)}>{level.name} </button>
 					{/each}  					
-
-					<ArticleButtons {filteredArticleList} {addArticle} />
+                    
+					<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: 1em">
+					  <ArticleButtons {filteredArticleList} {addArticle} />
+					</div>
 					<OrderList orderList={orderList} on:pressedEnter={testFunc}/>
 					</div>
 				</div>

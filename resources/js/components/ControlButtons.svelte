@@ -73,7 +73,7 @@ function saveData(dest){
     console.log("articleList ", articleList);
     orderList.forEach(item => {
        console.log("forEach orderlist item: ",item)
-       const invoiceItem = articleList[0].find(article => item.id == article.id);
+       const invoiceItem = articleList.find(article => item.id == article.id);
        invoiceItem.quantity = item.quantity;
        console.log(invoiceItem);
        invoice.push(invoiceItem);

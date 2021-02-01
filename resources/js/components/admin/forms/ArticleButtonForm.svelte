@@ -3,6 +3,7 @@
 	import { articleListStore } from "./../../stores/articleList/store.js";
 
 	var button = [];
+	let buttonName = "";
 	var res = "";
 	let allArticle = [];
 
@@ -13,7 +14,6 @@
 	onMount(() => {
 	  console.log("the component has mounted");
 	});
-
 async function saveButton(button){
     console.log(button);
 		const response = await axios(
@@ -51,7 +51,7 @@ async function saveButton(button){
 					<div>{res}</div>
 					    <div class="form-group">
                             <label for="">Name:</label>
-                            <input name='name' type='text' class='form-control' id='name' bind:value="{button.name}"  >
+                            <input name='name' type='text' class='form-control' id='name' bind:value="{buttonName}"  >
                         </div>	
 						<div class="form-group">
 						   <label for="">Reference:</label>

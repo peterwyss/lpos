@@ -8,3 +8,5 @@ export const lastOrderListStore = writable([]);
 export const totalStore = writable(0);
 export const lastTotalStore = writable(0);
 export const posStatusStore = writable('');
+export const updateData = writable('');
+

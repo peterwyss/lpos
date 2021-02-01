@@ -9,6 +9,6 @@ export const articleListStore = writable([], function start(set) {
       })
       .then(function(response) {
         console.log("res articleList: ",response);
-        set(response);
+        set(response.articleList);
       });
   });

@@ -9,7 +9,7 @@
 
 	
 	onMount(() => {
-	  console.log("the component has mounted");
+	  console.log("the component has been mounted");
 	  getArticle();
 	  
 	});
