@@ -1,6 +1,5 @@
 <script>
 import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
-import { totalStore } from './stores.js'; 
 import { lastTotalStore } from './stores.js'; 
 import {articleListStore} from './stores/articleList/store.js';
 
@@ -9,7 +8,7 @@ import { saveJournal, updateInvoice } from './handler.js';
 import { controllButtonStore}  from './stores/controllButtons/store.js';
 import Modal from './Modal.svelte';
 
-import { onMount } from "svelte";
+import { onMount, onDestroy } from "svelte";
 //import Error from './Error.svelte';
 
 
@@ -39,18 +38,13 @@ onMount(async () => {
 const unsubscribeOrderlist = orderListStore.subscribe(value => {
 	orderList = value;
   });
-const unsubscribetotal = totalStore.subscribe(value => {
-   total = value;
-});
-const unsubscribelasttotal = lastTotalStore.subscribe(value => {
-   lastTotal = value;
-});
+
 const unsubscribelastorderlist = lastOrderListStore.subscribe(value => {
    lastOrderList = value;
 });
-const unsubscribePosStatus = posStatusStore.subscribe(value => {
-   posStatus = value;
-});
+//const unsubscribePosStatus = posStatusStore.subscribe(value => {
+//   posStatus = value;
+//});
 function getInvoiceNumber(){
    console.log("function getInvoiceNumber");
     return getNewInvoice()
