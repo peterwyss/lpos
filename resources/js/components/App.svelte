@@ -5,7 +5,7 @@
 
   import { posStatusStore } from "./stores.js";
   import { articleListStore } from "./stores/articleList/store.js";
-  import { orderListStore } from "./stores.js";
+  import { orderListStore, totalStore } from "./stores.js";
   import ArticleButtons from "./ArticleButtons.svelte";
   import OrderList from "./OrderList.svelte";
   import Display from "./Display.svelte";
@@ -39,6 +39,7 @@
       method: "GET"
     });
     articleButtonData = resButton.data.articleButtonList;
+    console.log(articleButtonData);
     articleButtonList.set(articleButtonData);
     articles = $articleListStore;
     console.log("articles: ", articles);
@@ -96,6 +97,8 @@
       addText: "",
       group: 1
     };
+    totalStore.update(n => n + found.price )
+
     if (orderList.length == 0) {
       orderList = [orderElement, ...orderList];
     } else {

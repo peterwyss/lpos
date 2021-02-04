@@ -40636,7 +40636,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[21] = list[i];
   return child_ctx;
-} // (134:6) {#if $updateData == true}
+} // (137:6) {#if $updateData == true}
 
 
 function create_if_block(ctx) {
@@ -40645,7 +40645,7 @@ function create_if_block(ctx) {
     c: function create() {
       p = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("p");
       p.textContent = "Please reload!";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(p, file, 134, 8, 3826);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(p, file, 137, 8, 3920);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, p, anchor);
@@ -40658,11 +40658,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(134:6) {#if $updateData == true}",
+    source: "(137:6) {#if $updateData == true}",
     ctx: ctx
   });
   return block;
-} // (143:8) {#each $articleLevelList as level}
+} // (146:8) {#each $articleLevelList as level}
 
 
 function create_each_block(ctx) {
@@ -40679,7 +40679,7 @@ function create_each_block(ctx) {
       t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t_value);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "class", "btn btn-primary");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 143, 10, 4096);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 146, 10, 4190);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, button, anchor);
@@ -40718,7 +40718,7 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(143:8) {#each $articleLevelList as level}",
+    source: "(146:8) {#each $articleLevelList as level}",
     ctx: ctx
   });
   return block;
@@ -40840,20 +40840,20 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["create_component"])(orderlist.$$.fragment);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "type", "button");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(button, "class", "btn btn-primary");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 138, 8, 3941);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(button, file, 141, 8, 4035);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_style"])(div0, "display", "grid");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_style"])(div0, "grid-template-columns", "1fr 1fr 1fr 1fr");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_style"])(div0, "grid-gap", "1em");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 151, 8, 4277);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div0, file, 154, 8, 4371);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div1, "class", "col-sm");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 132, 1, 3765);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div1, file, 135, 1, 3859);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div2, "class", "col-sm");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 157, 2, 4470);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div2, file, 160, 2, 4564);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div3, "class", "row");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div3, file, 131, 4, 3746);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div3, file, 134, 4, 3840);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(div4, "class", "container");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div4, file, 130, 2, 3718);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(main, file, 129, 0, 3709);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(div4, file, 133, 2, 3812);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(main, file, 132, 0, 3803);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -41069,6 +41069,7 @@ function instance($$self, $$props, $$invalidate) {
           case 2:
             resButton = _context.sent;
             articleButtonData = resButton.data.articleButtonList;
+            console.log(articleButtonData);
             _stores_js__WEBPACK_IMPORTED_MODULE_3__["articleButtonList"].set(articleButtonData);
             articles = $articleListStore;
             console.log("articles: ", articles);
@@ -41092,7 +41093,7 @@ function instance($$self, $$props, $$invalidate) {
             filter(articleLevel);
             sortArticleButtons();
 
-          case 9:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -41133,6 +41134,9 @@ function instance($$self, $$props, $$invalidate) {
       price: found.price,
       addText: "",
       group: 1
+    });
+    _stores_js__WEBPACK_IMPORTED_MODULE_3__["totalStore"].update(function (n) {
+      return n + found.price;
     });
 
     if (orderList.length == 0) {
@@ -41192,6 +41196,7 @@ function instance($$self, $$props, $$invalidate) {
       posStatusStore: _stores_js__WEBPACK_IMPORTED_MODULE_3__["posStatusStore"],
       articleListStore: _stores_articleList_store_js__WEBPACK_IMPORTED_MODULE_5__["articleListStore"],
       orderListStore: _stores_js__WEBPACK_IMPORTED_MODULE_3__["orderListStore"],
+      totalStore: _stores_js__WEBPACK_IMPORTED_MODULE_3__["totalStore"],
       ArticleButtons: _ArticleButtons_svelte__WEBPACK_IMPORTED_MODULE_6__["default"],
       OrderList: _OrderList_svelte__WEBPACK_IMPORTED_MODULE_7__["default"],
       Display: _Display_svelte__WEBPACK_IMPORTED_MODULE_8__["default"],
@@ -41647,15 +41652,15 @@ var file = "resources/js/components/ControlButtons.svelte";
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[20] = list[i];
+  child_ctx[21] = list[i];
   return child_ctx;
-} // (109:0) {#each $controllButtonStore as button}
+} // (111:0) {#each $controllButtonStore as button}
 
 
 function create_each_block(ctx) {
   var t_value =
   /*button*/
-  ctx[20][0].name + "";
+  ctx[21][0].name + "";
   var t;
   var block = {
     c: function create() {
@@ -41669,7 +41674,7 @@ function create_each_block(ctx) {
       /*$controllButtonStore*/
       2 && t_value !== (t_value =
       /*button*/
-      ctx[20][0].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t, t_value);
+      ctx[21][0].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["set_data_dev"])(t, t_value);
     },
     d: function destroy(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach_dev"])(t);
@@ -41679,11 +41684,11 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(109:0) {#each $controllButtonStore as button}",
+    source: "(111:0) {#each $controllButtonStore as button}",
     ctx: ctx
   });
   return block;
-} // (118:0) {#if showModal}
+} // (120:0) {#if showModal}
 
 
 function create_if_block(ctx) {
@@ -41716,7 +41721,7 @@ function create_if_block(ctx) {
 
       if (dirty &
       /*$$scope*/
-      8388608) {
+      16777216) {
         modal_changes.$$scope = {
           dirty: dirty,
           ctx: ctx
@@ -41742,11 +41747,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(118:0) {#if showModal}",
+    source: "(120:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (121:2) <h2 slot="header">
+} // (123:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -41756,7 +41761,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("h2");
       h2.textContent = "Error";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 120, 2, 2983);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 122, 2, 3094);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, h2, anchor);
@@ -41769,7 +41774,7 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(121:2) <h2 slot=\\\"header\\\">",
+    source: "(123:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
@@ -41813,10 +41818,10 @@ function create_fragment(ctx) {
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "button");
       input0.value = "Enter";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 114, 0, 2780);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 116, 0, 2891);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "button");
       input1.value = "Close";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 115, 0, 2841);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 117, 0, 2952);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -41938,10 +41943,15 @@ function create_fragment(ctx) {
 
 function instance($$self, $$props, $$invalidate) {
   var $articleListStore;
+  var $totalStore;
   var $controllButtonStore;
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_store"])(_stores_articleList_store_js__WEBPACK_IMPORTED_MODULE_3__["articleListStore"], "articleListStore");
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["component_subscribe"])($$self, _stores_articleList_store_js__WEBPACK_IMPORTED_MODULE_3__["articleListStore"], function ($$value) {
     return $$invalidate(12, $articleListStore = $$value);
+  });
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_store"])(_stores_js__WEBPACK_IMPORTED_MODULE_2__["totalStore"], "totalStore");
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["component_subscribe"])($$self, _stores_js__WEBPACK_IMPORTED_MODULE_2__["totalStore"], function ($$value) {
+    return $$invalidate(13, $totalStore = $$value);
   });
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["validate_store"])(_stores_controllButtons_store_js__WEBPACK_IMPORTED_MODULE_5__["controllButtonStore"], "controllButtonStore");
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["component_subscribe"])($$self, _stores_controllButtons_store_js__WEBPACK_IMPORTED_MODULE_5__["controllButtonStore"], function ($$value) {
@@ -42028,12 +42038,16 @@ function instance($$self, $$props, $$invalidate) {
       orderList = [];
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["posStatusStore"].set("closed");
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["orderListStore"].set(orderList);
-      lastTotal = total;
+      lastTotal = $totalStore;
       console.log("Total: ", total);
+      console.log("Last Total saveData: ", lastTotal);
       console.log("lastTotal: ", lastTotal);
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastTotalStore"].set(lastTotal);
-      Object(_handler_js__WEBPACK_IMPORTED_MODULE_4__["updateInvoice"])(invoiceId, total);
+      Object(_handler_js__WEBPACK_IMPORTED_MODULE_4__["updateInvoice"])(invoiceId, $totalStore);
       getInvoiceNumber();
+      _stores_js__WEBPACK_IMPORTED_MODULE_2__["totalStore"].update(function (n) {
+        return n = 0;
+      });
     }
   }
 
@@ -42076,6 +42090,7 @@ function instance($$self, $$props, $$invalidate) {
       lastOrderListStore: _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastOrderListStore"],
       posStatusStore: _stores_js__WEBPACK_IMPORTED_MODULE_2__["posStatusStore"],
       lastTotalStore: _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastTotalStore"],
+      totalStore: _stores_js__WEBPACK_IMPORTED_MODULE_2__["totalStore"],
       articleListStore: _stores_articleList_store_js__WEBPACK_IMPORTED_MODULE_3__["articleListStore"],
       getNewInvoice: _handler_js__WEBPACK_IMPORTED_MODULE_4__["getNewInvoice"],
       saveJournal: _handler_js__WEBPACK_IMPORTED_MODULE_4__["saveJournal"],
@@ -42101,6 +42116,7 @@ function instance($$self, $$props, $$invalidate) {
       saveData: saveData,
       handleClick: handleClick,
       $articleListStore: $articleListStore,
+      $totalStore: $totalStore,
       $controllButtonStore: $controllButtonStore
     };
   };
@@ -42217,7 +42233,7 @@ var console_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_0__["globals"].console;
 
 
 
-var file = "resources/js/components/Display.svelte"; // (34:0) {:else}
+var file = "resources/js/components/Display.svelte"; // (33:0) {:else}
 
 function create_else_block(ctx) {
   var h1;
@@ -42227,7 +42243,7 @@ function create_else_block(ctx) {
   var t0;
   var t1;
   var t2_value =
-  /*total*/
+  /*$totalStore*/
   ctx[1].toFixed(2) + "";
   var t2;
   var block = {
@@ -42236,7 +42252,7 @@ function create_else_block(ctx) {
       t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t0_value);
       t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t2_value);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h1, file, 34, 2, 811);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h1, file, 33, 2, 824);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, h1, anchor);
@@ -42251,9 +42267,9 @@ function create_else_block(ctx) {
       /*orderElement*/
       ctx[0].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data_dev"])(t0, t0_value);
       if (dirty &
-      /*total*/
+      /*$totalStore*/
       2 && t2_value !== (t2_value =
-      /*total*/
+      /*$totalStore*/
       ctx[1].toFixed(2) + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data_dev"])(t2, t2_value);
     },
     d: function destroy(detaching) {
@@ -42264,11 +42280,11 @@ function create_else_block(ctx) {
     block: block,
     id: create_else_block.name,
     type: "else",
-    source: "(34:0) {:else}",
+    source: "(33:0) {:else}",
     ctx: ctx
   });
   return block;
-} // (32:0) {#if total === 0}
+} // (31:0) {#if $totalStore === 0}
 
 
 function create_if_block(ctx) {
@@ -42283,7 +42299,7 @@ function create_if_block(ctx) {
       h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
       t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("Total: ");
       t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t1_value);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h1, file, 32, 2, 756);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_location"])(h1, file, 31, 2, 769);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert_dev"])(target, h1, anchor);
@@ -42305,7 +42321,7 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(32:0) {#if total === 0}",
+    source: "(31:0) {#if $totalStore === 0}",
     ctx: ctx
   });
   return block;
@@ -42316,7 +42332,7 @@ function create_fragment(ctx) {
 
   function select_block_type(ctx, dirty) {
     if (
-    /*total*/
+    /*$totalStore*/
     ctx[1] === 0) return create_if_block;
     return create_else_block;
   }
@@ -42369,21 +42385,36 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
-  var $orderListStore;
+  var $totalStore;
   var $lastTotalStore;
-  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["validate_store"])(_stores_js__WEBPACK_IMPORTED_MODULE_1__["orderListStore"], "orderListStore");
-  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _stores_js__WEBPACK_IMPORTED_MODULE_1__["orderListStore"], function ($$value) {
-    return $$invalidate(3, $orderListStore = $$value);
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["validate_store"])(_stores_js__WEBPACK_IMPORTED_MODULE_1__["totalStore"], "totalStore");
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _stores_js__WEBPACK_IMPORTED_MODULE_1__["totalStore"], function ($$value) {
+    return $$invalidate(1, $totalStore = $$value);
   });
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["validate_store"])(_stores_js__WEBPACK_IMPORTED_MODULE_1__["lastTotalStore"], "lastTotalStore");
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _stores_js__WEBPACK_IMPORTED_MODULE_1__["lastTotalStore"], function ($$value) {
     return $$invalidate(2, $lastTotalStore = $$value);
   });
-  var orderList = [];
   var total = 0;
   var lastTotal = 0;
-  var orderElement = $$props.orderElement;
-  console.log(lastTotal);
+  var orderElement = $$props.orderElement; //const unsubscribeOrderlist = orderListStore.subscribe(value => {
+  //  orderList = value;
+  //});
+  //const unsubscribetotal = totalStore.subscribe(value => {
+  //  total = value;
+  //});
+  //const unsubscribelasttotal = lastTotalStore.subscribe(value => {
+  //  lastTotal = value;
+  //});
+  //$: {
+  //  total = 0;
+  //  $orderListStore.forEach((element, i) => {
+  //    total = total + element.quantity * element.price;
+  //    totalStore.set(total);
+  //  });
+  // }
+
+  console.log("Last total: ", lastTotal);
   var writable_props = ["orderElement"];
   Object.keys($$props).forEach(function (key) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn("<Display> was created with unknown prop '".concat(key, "'"));
@@ -42402,18 +42433,16 @@ function instance($$self, $$props, $$invalidate) {
       orderListStore: _stores_js__WEBPACK_IMPORTED_MODULE_1__["orderListStore"],
       totalStore: _stores_js__WEBPACK_IMPORTED_MODULE_1__["totalStore"],
       lastTotalStore: _stores_js__WEBPACK_IMPORTED_MODULE_1__["lastTotalStore"],
-      orderList: orderList,
       total: total,
       lastTotal: lastTotal,
       orderElement: orderElement,
-      $orderListStore: $orderListStore,
+      $totalStore: $totalStore,
       $lastTotalStore: $lastTotalStore
     };
   };
 
   $$self.$inject_state = function ($$props) {
-    if ("orderList" in $$props) orderList = $$props.orderList;
-    if ("total" in $$props) $$invalidate(1, total = $$props.total);
+    if ("total" in $$props) total = $$props.total;
     if ("lastTotal" in $$props) lastTotal = $$props.lastTotal;
     if ("orderElement" in $$props) $$invalidate(0, orderElement = $$props.orderElement);
   };
@@ -42422,30 +42451,7 @@ function instance($$self, $$props, $$invalidate) {
     $$self.$inject_state($$props.$$inject);
   }
 
-  $$self.$$.update = function () {
-    if ($$self.$$.dirty &
-    /*$orderListStore, total*/
-    10) {
-      //const unsubscribeOrderlist = orderListStore.subscribe(value => {
-      //  orderList = value;
-      //});
-      //const unsubscribetotal = totalStore.subscribe(value => {
-      //  total = value;
-      //});
-      //const unsubscribelasttotal = lastTotalStore.subscribe(value => {
-      //  lastTotal = value;
-      //});
-      $: {
-        $$invalidate(1, total = 0);
-        $orderListStore.forEach(function (element, i) {
-          $$invalidate(1, total = total + element.quantity * element.price);
-          _stores_js__WEBPACK_IMPORTED_MODULE_1__["totalStore"].set(total);
-        });
-      }
-    }
-  };
-
-  return [orderElement, total, $lastTotalStore];
+  return [orderElement, $totalStore, $lastTotalStore];
 }
 
 var Display = /*#__PURE__*/function (_SvelteComponentDev) {

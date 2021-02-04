@@ -3,7 +3,6 @@
   import { totalStore } from "./stores.js";
   import { lastTotalStore } from "./stores.js";
 
-  let orderList = [];
   let total = 0;
   let lastTotal = 0;
 
@@ -19,18 +18,18 @@
   //  lastTotal = value;
   //});
 
-  $: {
-    total = 0;
-    $orderListStore.forEach((element, i) => {
-      total = total + element.quantity * element.price;
-      totalStore.set(total);
-    });
-  }
-  console.log(lastTotal);
+  //$: {
+  //  total = 0;
+  //  $orderListStore.forEach((element, i) => {
+  //    total = total + element.quantity * element.price;
+  //    totalStore.set(total);
+  //  });
+ // }
+  console.log("Last total: ",lastTotal);
 </script>
 
-{#if total === 0}
+{#if $totalStore === 0}
   <h1>Total: {$lastTotalStore.toFixed(2)}</h1>
 {:else}
-  <h1>{orderElement.name} {total.toFixed(2)}</h1>
+  <h1>{orderElement.name} {$totalStore.toFixed(2)}</h1>
 {/if}

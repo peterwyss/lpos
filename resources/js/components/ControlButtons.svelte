@@ -1,6 +1,6 @@
 <script>
 import { orderListStore, lastOrderListStore, posStatusStore } from './stores.js'; 
-import { lastTotalStore } from './stores.js'; 
+import { lastTotalStore, totalStore } from './stores.js'; 
 import {articleListStore} from './stores/articleList/store.js';
 
 import { getNewInvoice } from './handler.js';
@@ -82,13 +82,15 @@ function saveData(dest){
     orderList = [];
     posStatusStore.set("closed");
     orderListStore.set(orderList);
-    lastTotal = total;
+    lastTotal = $totalStore;
     console.log("Total: ",total);
+    console.log("Last Total saveData: ",lastTotal);
 
     console.log("lastTotal: ",lastTotal);
     lastTotalStore.set(lastTotal);
-    updateInvoice(invoiceId, total); 
+    updateInvoice(invoiceId, $totalStore); 
     getInvoiceNumber();
+    totalStore.update(n => n = 0);
    }
 }
 
