@@ -16,11 +16,12 @@
   let filteredArticleList = []; /* Artikel nach Ebenen filtern */
   var articleLevel = 1;
   var invoiceId = 0; /* ID der aktuellen Rechnung */
-  var articles = [];
   var orderList = [];
   let orderElement = {};
   let articleList = {};
   let posStatus = "";
+  let prev_page;
+  let next_page;
 
   const unsubscribe = orderListStore.subscribe(value => {
     orderList = value;
@@ -35,32 +36,18 @@
   onMount(async () => {
     /* Buttons aus der Datenbank holen */
     const resButton = await axios({
-      url: "/articleButton/index",
+      url: "/articleButton/index/" + articleLevel,
       method: "GET"
     });
-    articleButtonData = resButton.data.articleButtonList;
-    console.log(articleButtonData);
+    console.log("resButton: ",resButton);
+    articleButtonData = resButton.data.articleButtonList.data;
+    console.log("articleButtonData: ",articleButtonData);
     articleButtonList.set(articleButtonData);
-    articles = $articleListStore;
-    console.log("articles: ", articles);
-    /* Die Ebenen für das GUI */
-    //const resLevel = await axios({
-    //	    url: "/articleLevel/index",
-    //	    method: 'GET',
-    //	});
-    //    articleLevelList.set(articleLevelData);
-
-    /* Alle Artikel aus der Datenbank holen
-        const resArticle = await axios({
-			    url: "/article/index",
-			    method: 'GET',
-			});
-			articles = resArticle.data.articleList;
-			console.log("articles: ",articles);
-			articleListStore.set(articles);
-    */
-
-    filter(articleLevel);
+    let current_page = resButton.data.articleButtonList.current_page;
+    console.log("current_page: " ,typeof(current_page), " ",current_page);
+  
+    next_page = current_page + 1;
+    console.log("next_page: ",next_page);
     sortArticleButtons();
   });
 
@@ -68,14 +55,21 @@
 
   /* Filter für die Ebenen zur Darstellung der Button */
 
-  function filter(aL) {
+  async function filter(aL,param=0) {
+    console.log("Function filter: al=",aL," param=",param);
+  
+    let url = "/articleButton/index/" + aL + "?page=" + param;
+    console.log(url);
+    const resButton = await axios({
+      url: url,
+      method: "GET"
+    });
+    articleButtonData = resButton.data.articleButtonList.data;
     articleLevel = aL;
-    filteredArticleList = articleButtonData.filter(
-      item => item.level == articleLevel
-    );
-    console.log("Filtered: ", filteredArticleList);
-    console.log("Level: ", articleLevel);
-    console.log("updateData: ", $updateData);
+    console.log("articleButtonData: ",articleButtonData);
+    articleButtonList.set(articleButtonData);
+    sortArticleButtons();
+
   }
 
   let testFunc = () => {
@@ -83,9 +77,9 @@
   };
 
   function addArticle(id) {
-    console.log("ArticleList: ", filteredArticleList);
     posStatusStore.set("open");
-    const found = articles.find(element => element.id == id);
+    const found = $articleListStore.find(element => element.id == id);
+    console.log("$articleListStore: ",$articleListStore);
     console.log("found: ", found);
     console.log("found.id: ", found.id);
     orderElement = {
@@ -128,15 +122,16 @@
       return a.position - b.position;
     });
   }
+  function scroll(e){
+    console.log(e);
+  }
 </script>
 
 <main>
   <div class="container">
     <div class="row">
 	<div class="col-sm">
-      {#if $updateData == true}
-        <p>Please reload!</p>
-      {/if}
+
       <Display {orderElement} />
       <ControlButtons bind:invoiceId />
         <button type="button" class="btn btn-primary" on:click={setLevel}>
@@ -147,7 +142,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            on:click={filter(level.id)}>
+            on:click={filter(level.id,1)}>
             {level.name}
           </button>
         {/each}
@@ -155,10 +150,16 @@
         <div
           style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
           grid-gap: 1em">
-          <ArticleButtons {filteredArticleList} {addArticle} />
+          {#if prev_page }
+          <button on:click={articleLevel,next_page}>Prev</button>
+          {/if}
+          <ArticleButtons {articleButtonData} {addArticle} />
+          {#if next_page }
+          <button on:click={filter(articleLevel,next_page)}>Next</button>
+          {/if}
         </div>
 		</div>
-		<div class="col-sm">
+		<div class="col-sm" on:scroll={scroll()}>
 
         <OrderList {orderList} on:pressedEnter={testFunc} />
 		</div>

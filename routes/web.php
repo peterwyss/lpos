@@ -31,7 +31,7 @@ Route::get('/admin', function () {
 });
 
 Route::post('/articleButton/store', 'ArticleButtonController@store');
-Route::get('articleButton/index', 'ArticleButtonController@index');
+Route::get('articleButton/index/{level}', 'ArticleButtonController@index');
 
 Route::get('articleLevel/index', 'ArticleLevelController@index');
 Route::post('articleLevel/store', 'ArticleLevelController@store');

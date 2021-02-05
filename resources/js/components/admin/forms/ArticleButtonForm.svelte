@@ -15,7 +15,7 @@
 	  console.log("the component has mounted");
 	});
 async function saveButton(button){
-    console.log(button);
+	try{
 		const response = await axios(
 		{
 			url: "/articleButton/store",
@@ -26,15 +26,21 @@ async function saveButton(button){
 			//	'X-CSRF-TOKEN': _TOKEN
 			//},
 			params: {
-                'name' : button.name,
+                'name' : buttonName,
 				'reference' : button.reference,
 				'level' : button.level,
 				'position' : button.position
 
 			}
 		});
-		console.log(response);
+		console.log("saveButton response: ",response);
 		res = response.data.message;
+
+	}catch(e){
+		res = e;
+		console.log("Error: ",e);
+
+	}
 		
 
 }
@@ -55,7 +61,7 @@ async function saveButton(button){
                         </div>	
 						<div class="form-group">
 						   <label for="">Reference:</label>
-						   <p>Selected: {button.reference} / {button.name} / {button.level}
+						   <p>Selected: {button.reference} / {buttonName} / {button.level}
 						  <select id='reference'  bind:value="{button.reference}">
 						    {#each allArticle as article}
 								<option value="{article.id}">{article.name} {article.id}</option>

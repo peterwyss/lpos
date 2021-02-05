@@ -69,6 +69,7 @@ function handleChange(e){
 function handleChangeText(e) {
   console.log(e.target.value);
   addText = e.target.value;  
+  orderElement.addText = e.target.value;
 } 
 
 function saveChange() {

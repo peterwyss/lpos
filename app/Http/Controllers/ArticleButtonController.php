@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ArticleButton;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\AbstractPaginator;
 
 class ArticleButtonController extends Controller
 {
@@ -13,13 +14,16 @@ class ArticleButtonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $articleButtonList = ArticleButton::all();
+    public function index($level)
+    {      
+        Log::debug(("Level: " .  $level));
+        $articleButtonList = ArticleButton::where('level', '=', $level)->paginate(20);
+    
         Log::debug($articleButtonList);
         Log::channel('journal')->debug($articleButtonList);
 
         return response()->json(["articleButtonList" => $articleButtonList]);
+        //return view('home',['articleButtonList' => $articleButtonList]); 
     }
 
     /**
