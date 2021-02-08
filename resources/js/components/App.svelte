@@ -5,6 +5,8 @@
 
   import { posStatusStore } from "./stores.js";
   import { articleListStore } from "./stores/articleList/store.js";
+  import { postingPeriod } from "./stores/postingPeriod/store.js";
+
   import { orderListStore, totalStore } from "./stores.js";
   import ArticleButtons from "./ArticleButtons.svelte";
   import OrderList from "./OrderList.svelte";
@@ -39,25 +41,26 @@
       url: "/articleButton/index/" + articleLevel,
       method: "GET"
     });
-    console.log("resButton: ",resButton);
+    console.log("resButton: ", resButton);
     articleButtonData = resButton.data.articleButtonList.data;
-    console.log("articleButtonData: ",articleButtonData);
+    console.log("articleButtonData: ", articleButtonData);
     articleButtonList.set(articleButtonData);
     let current_page = resButton.data.articleButtonList.current_page;
-    console.log("current_page: " ,typeof(current_page), " ",current_page);
-  
+    console.log("current_page: ", typeof current_page, " ", current_page);
+
     next_page = current_page + 1;
-    console.log("next_page: ",next_page);
+    console.log("next_page: ", next_page);
     sortArticleButtons();
+    console.log($postingPeriod);
   });
 
   /* Neue Rechnung erzeugen -> in der Datenbank eintragen */
 
   /* Filter für die Ebenen zur Darstellung der Button */
 
-  async function filter(aL,param=0) {
-    console.log("Function filter: al=",aL," param=",param);
-  
+  async function filter(aL, param = 0) {
+    console.log("Function filter: al=", aL, " param=", param);
+
     let url = "/articleButton/index/" + aL + "?page=" + param;
     console.log(url);
     const resButton = await axios({
@@ -66,10 +69,9 @@
     });
     articleButtonData = resButton.data.articleButtonList.data;
     articleLevel = aL;
-    console.log("articleButtonData: ",articleButtonData);
+    console.log("articleButtonData: ", articleButtonData);
     articleButtonList.set(articleButtonData);
     sortArticleButtons();
-
   }
 
   let testFunc = () => {
@@ -79,7 +81,7 @@
   function addArticle(id) {
     posStatusStore.set("open");
     const found = $articleListStore.find(element => element.id == id);
-    console.log("$articleListStore: ",$articleListStore);
+    console.log("$articleListStore: ", $articleListStore);
     console.log("found: ", found);
     console.log("found.id: ", found.id);
     orderElement = {
@@ -91,7 +93,7 @@
       addText: "",
       group: 1
     };
-    totalStore.update(n => n + found.price )
+    totalStore.update(n => n + found.price);
 
     if (orderList.length == 0) {
       orderList = [orderElement, ...orderList];
@@ -122,18 +124,19 @@
       return a.position - b.position;
     });
   }
-  function scroll(e){
+  function scroll(e) {
     console.log(e);
   }
 </script>
 
+
 <main>
   <div class="container">
     <div class="row">
-	<div class="col-sm">
-
-      <Display {orderElement} />
-      <ControlButtons bind:invoiceId />
+      <div class="col-sm">
+{$postingPeriod.postingPeriod}
+        <Display {orderElement} />
+        <ControlButtons bind:invoiceId />
         <button type="button" class="btn btn-primary" on:click={setLevel}>
           Offen
         </button>
@@ -142,7 +145,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            on:click={filter(level.id,1)}>
+            on:click={filter(level.id, 1)}>
             {level.name}
           </button>
         {/each}
@@ -150,22 +153,27 @@
         <div
           style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
           grid-gap: 1em">
-          {#if prev_page }
-          <button on:click={articleLevel,next_page}>Prev</button>
+          {#if prev_page}
+            <button on:click={(articleLevel, next_page)}>Prev</button>
           {/if}
           <ArticleButtons {articleButtonData} {addArticle} />
-          {#if next_page }
-          <button on:click={filter(articleLevel,next_page)}>Next</button>
+          {#if next_page}
+            <button on:click={filter(articleLevel, next_page)}>Next</button>
           {/if}
         </div>
-		</div>
-		<div class="col-sm" on:scroll={scroll()}>
+      </div>
+        <div class="col-sm orderlist overflow-auto" >
+        
 
-        <OrderList {orderList} on:pressedEnter={testFunc} />
-		</div>
-		
+            <OrderList {orderList} on:pressedEnter={testFunc} />
+        </div>
     </div>
 
   </div>
 
 </main>
+<style>
+.orderlist {
+  max-height: 50em !important;
+}
+</style>

@@ -99,6 +99,7 @@ function saveChange() {
 }
 
 </script>
+<div class="overflow-auto">
 <h1>{posStatus}</h1>
 <ul class="list-group">
   {#each orderList as element,index}
@@ -116,7 +117,7 @@ function saveChange() {
     </li>
   {/each}
 </ul>
-
+</div>
 {#if posStatus == 'closed'}
   {#each lastOrderList as element}
 
