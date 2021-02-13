@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PostingPeriod;
+use Illuminate\Support\Facades\Log;
 
 class PostingPeriodController extends Controller
 {
@@ -14,8 +15,14 @@ class PostingPeriodController extends Controller
      */
     public function index()
     {
-      $postingPeriod = PostingPeriod::where('total','=', '0');
-      return response()->json(["postingPeriod" => $postingPeriod]);
+      $postingPeriod = PostingPeriod::where('total','=', 0.00)->get();
+      Log::debug("Period: ". serialize($postingPeriod)) ;
+      Log::debug("Period: -> " . $postingPeriod[0]->total);
+      foreach ($postingPeriod as $period) {
+        Log::debug("id " . $period->id . "total: " . $period->total);
+    }
+
+      return response()->json(['postingPeriod' => $postingPeriod[0]]);
 
       
         

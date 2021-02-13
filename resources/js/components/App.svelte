@@ -24,6 +24,7 @@
   let posStatus = "";
   let prev_page;
   let next_page;
+  let postingPeriodVar;
 
   const unsubscribe = orderListStore.subscribe(value => {
     orderList = value;
@@ -51,7 +52,7 @@
     next_page = current_page + 1;
     console.log("next_page: ", next_page);
     sortArticleButtons();
-    console.log($postingPeriod);
+    postingPeriodVar = $postingPeriod.postingPeriod.id;
   });
 
   /* Neue Rechnung erzeugen -> in der Datenbank eintragen */
@@ -134,7 +135,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
-{$postingPeriod.postingPeriod}
+{postingPeriodVar}
         <Display {orderElement} />
         <ControlButtons bind:invoiceId />
         <button type="button" class="btn btn-primary" on:click={setLevel}>
