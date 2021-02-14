@@ -29,7 +29,15 @@
 </script>
 
 {#if $totalStore === 0}
-  <h1>Total: {$lastTotalStore.toFixed(2)}</h1>
+
+<div class="row">
+  <div class=" col "><h1>Total:</h1></div>
+  <div class="col"><h1> {$lastTotalStore.toFixed(2)}</h1></div>
+</div>
 {:else}
-  <h1>{orderElement.name} {$totalStore.toFixed(2)}</h1>
+<div class="row">
+<div class=" col "><h1>{orderElement.name}</h1></div> 
+<div class=" col "><h1>{$totalStore.toFixed(2)}</h1></div>
+</div>
+
 {/if}

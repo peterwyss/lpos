@@ -59,7 +59,7 @@ function getInvoiceNumber(){
 }
 
 function saveData(dest){
-   console.log("savaData");
+   console.log("saveData");
    if(orderList.length == 0){
       console.log("leer");
    }else{ 
@@ -69,12 +69,13 @@ function saveData(dest){
        console.log("forEach orderlist item: ",item)
        const invoiceItem = articleList.find(article => item.id == article.id);
        invoiceItem.quantity = item.quantity;
-       console.log(invoiceItem);
+       console.log("invoiceItem: ",invoiceItem);
        invoice.push(invoiceItem);
        console.log(invoice);
        
        response = saveJournal(invoiceItem, invoiceId);
        console.log("response after saveJournal:" ,response);
+       console.log("combi: ",invoiceItem.combi);
 
 
        });
