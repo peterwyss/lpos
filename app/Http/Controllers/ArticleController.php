@@ -42,6 +42,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        Log::debug("Article store: ");
+        Log::debug($request);
         $article = new Article();
         $article->name = request('name');
         $article->plu = request('plu');

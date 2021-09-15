@@ -41796,7 +41796,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[21] = list[i];
   return child_ctx;
-} // (112:0) {#each $controllButtonStore as button}
+} // (105:0) {#each $controllButtonStore as button}
 
 
 function create_each_block(ctx) {
@@ -41826,11 +41826,11 @@ function create_each_block(ctx) {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(112:0) {#each $controllButtonStore as button}",
+    source: "(105:0) {#each $controllButtonStore as button}",
     ctx: ctx
   });
   return block;
-} // (121:0) {#if showModal}
+} // (114:0) {#if showModal}
 
 
 function create_if_block(ctx) {
@@ -41889,11 +41889,11 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(121:0) {#if showModal}",
+    source: "(114:0) {#if showModal}",
     ctx: ctx
   });
   return block;
-} // (124:2) <h2 slot="header">
+} // (117:2) <h2 slot="header">
 
 
 function create_header_slot(ctx) {
@@ -41903,7 +41903,7 @@ function create_header_slot(ctx) {
       h2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("h2");
       h2.textContent = "Error";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(h2, "slot", "header");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 123, 2, 3159);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(h2, file, 116, 2, 2877);
     },
     m: function mount(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert_dev"])(target, h2, anchor);
@@ -41916,7 +41916,7 @@ function create_header_slot(ctx) {
     block: block,
     id: create_header_slot.name,
     type: "slot",
-    source: "(124:2) <h2 slot=\\\"header\\\">",
+    source: "(117:2) <h2 slot=\\\"header\\\">",
     ctx: ctx
   });
   return block;
@@ -41960,10 +41960,10 @@ function create_fragment(ctx) {
       if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input0, "type", "button");
       input0.value = "Enter";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 117, 0, 2956);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input0, file, 110, 0, 2674);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr_dev"])(input1, "type", "button");
       input1.value = "Close";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 118, 0, 3017);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["add_location"])(input1, file, 111, 0, 2735);
     },
     l: function claim(nodes) {
       throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -42157,34 +42157,27 @@ function instance($$self, $$props, $$invalidate) {
   }
 
   function saveData(dest) {
-    console.log("savaData");
-
     if (orderList.length == 0) {
       console.log("leer");
     } else {
       invoice = [];
-      console.log("articleList ", articleList);
       orderList.forEach(function (item) {
-        console.log("forEach orderlist item: ", item);
         var invoiceItem = articleList.find(function (article) {
           return item.id == article.id;
         });
         invoiceItem.quantity = item.quantity;
-        console.log("invoiceItem: ", invoiceItem);
         invoice.push(invoiceItem);
-        console.log(invoice);
         response = Object(_handler_js__WEBPACK_IMPORTED_MODULE_4__["saveJournal"])(invoiceItem, invoiceId);
-        console.log("response after saveJournal:", response);
-        console.log("combi: ", invoiceItem.combi);
-      });
+      }); //if(invoiceItem.combi !== null){
+      //   invoiceItem.combi.forEach(element => {
+      //      console.log(element); //Kombiartikel abarbeiten
+      //   });
+      //}
+
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastOrderListStore"].set(orderList);
       orderList = [];
-      _stores_js__WEBPACK_IMPORTED_MODULE_2__["posStatusStore"].set("closed");
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["orderListStore"].set(orderList);
       lastTotal = $totalStore;
-      console.log("Total: ", total);
-      console.log("Last Total saveData: ", lastTotal);
-      console.log("lastTotal: ", lastTotal);
       _stores_js__WEBPACK_IMPORTED_MODULE_2__["lastTotalStore"].set(lastTotal);
       Object(_handler_js__WEBPACK_IMPORTED_MODULE_4__["updateInvoice"])(invoiceId, $totalStore);
       getInvoiceNumber();

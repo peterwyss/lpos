@@ -11,6 +11,8 @@
 
 	let name =""; 
 	let plu = 0;
+	let articleCombi = "";
+	let combiArticle = [];
 
 	const unsubscribe = articleListStore.subscribe(value => {
 		allArticle = value;
@@ -21,7 +23,7 @@
 	});
 
 async function saveArticle(article){
-    console.log(article);
+    console.log("Article: ",article);
 		const response = await axios(
 		{
 			url: "/article/store",
@@ -32,14 +34,14 @@ async function saveArticle(article){
 			//	'X-CSRF-TOKEN': _TOKEN
 			//},
 			params: {
-                'name' : name,
-				'plu' :  plu,
+                'name' : article.name,
+				'plu' :  article.plu,
 				'category' : article.category,
 				'price'    : article.price,
 				'purchasePrice' : article.purchasePrice,
 				'stock' : article.stock,
 				'printer' : 1,
-				'combi' : ['test','ein_test']
+				'combi' : combiArticle
 			}
 		});
 		console.log("Response: ",response);
@@ -78,11 +80,11 @@ function pluChange(e){
 					<div>{newArticle} {res}</div>
 					    <div class="form-group">
                             <label for="">Name:</label>
-                            <input name='name' type='text' class='form-control' id='name' bind:value="{name}"  >
+                            <input name='name' type='text' class='form-control' id='name' bind:value="{article.name}"  >
                         </div>	
 						<div class="form-group">
                             <label for="">PLU:</label>
-                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{plu}" on:change="{(e) => pluChange(e)}">
+                            <input name='PLU' type='number' class='form-control' id='PLU' bind:value="{article.plu}" on:change="{(e) => pluChange(e)}">
 							<p>{formMessage}</p>
                         </div>	
 						<div class="form-group">
@@ -95,6 +97,7 @@ function pluChange(e){
                             <input name='price' type='number' step='0.05' class='form-control' id='price' bind:value="{article.price}">
                         </div>
 							
+
 						<div class="form-group">
                             <label for="">Einkaufspreis:</label>
                             <input name='purchasePrice' type='number' step='0.01' class='form-control' id='purchasePrice' bind:value="{article.purchasePrice}">
@@ -108,6 +111,14 @@ function pluChange(e){
                             <label for="">Printer:</label>
                             <input name='printer' type='number' class='form-control' id='stock' bind:value="{article.printer}">
                         </div>
+						<div class="form-group">
+                            <label for="">Kombiartikel:</label>
+							<select bind:value={articleCombi} on:blur={() => combiArticle.push(articleCombi)}   > 
+							{#each allArticle as art}
+                            <option name='printer' type='number' class='form-control' id='stock' value="{art.id}">{art.name}</option>
+                            {/each}
+							</select>
+						</div>
 							<input type="button"  on:click|preventDefault="{() => saveArticle(article)}" value="Save" />
 						
 					</div>
